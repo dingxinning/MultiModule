@@ -72,6 +72,12 @@
         </dependency>
         <!-- httpclient end -->
 
+        <!-- spring-web 下的 RestTemplate -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.3.10.RELEASE</version>
+        </dependency>
 
 
 

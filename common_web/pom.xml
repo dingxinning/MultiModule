@@ -124,12 +124,6 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
         </dependency>
-        <!--Fastjson是一个Java语言编写的JSON处理器   用于 imageVerity-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.17</version>
-        </dependency>
         <!--JSON start-->
 
         <!--log4j 日志输出 start-->
