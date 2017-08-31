@@ -8,6 +8,12 @@ learn java&amp;spring&amp;...
 1. 算法
 2. 设计模式
 3. 学习 Java
+- 集合
+- Java8
+- mongodb
+- quartz
+- httpClient
+- ...
 4. 学习 Groovy
 5. 学习 Spring
 6. 学习 Spring MVC

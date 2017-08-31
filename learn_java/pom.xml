@@ -59,12 +59,19 @@
             <version>2.2.1</version>
         </dependency>
 
-        <!-- httpclient -->
+        <!-- httpclient start -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+        <!-- httpclient end -->
+
 
 
 
