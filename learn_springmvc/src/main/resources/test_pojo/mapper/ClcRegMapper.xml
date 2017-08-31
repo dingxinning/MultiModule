@@ -1,0 +1,4434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test_pojo.dao.ClcRegMapper">
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="VARCHAR" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="APPID" jdbcType="VARCHAR" property="appid" />
+    <result column="REFUNDDATE" jdbcType="TIMESTAMP" property="refunddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, APPID, 
+    REFUNDDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, APPID, REFUNDDATE
+      )
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=VARCHAR}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{refunddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refunddate != null">
+        REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=VARCHAR},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=VARCHAR},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="DECIMAL" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="APPID" jdbcType="VARCHAR" property="appid" />
+    <result column="REFUNDDATE" jdbcType="TIMESTAMP" property="refunddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, APPID, 
+    REFUNDDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, APPID, REFUNDDATE
+      )
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=DECIMAL}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{refunddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=DECIMAL},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refunddate != null">
+        REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=DECIMAL},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=DECIMAL},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=DECIMAL},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="VARCHAR" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="APPID" jdbcType="VARCHAR" property="appid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, APPID
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, APPID)
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=VARCHAR}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=VARCHAR},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=VARCHAR},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="VARCHAR" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="APPID" jdbcType="VARCHAR" property="appid" />
+    <result column="REFUNDDATE" jdbcType="TIMESTAMP" property="refunddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, APPID, 
+    REFUNDDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, APPID, REFUNDDATE
+      )
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=VARCHAR}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{refunddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refunddate != null">
+        REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=VARCHAR},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=VARCHAR},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="DECIMAL" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="UNITNAME_CODE" jdbcType="VARCHAR" property="unitnameCode" />
+    <result column="UNITNAME" jdbcType="VARCHAR" property="unitname" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, UNITNAME_CODE, 
+    UNITNAME
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, UNITNAME_CODE, UNITNAME
+      )
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=DECIMAL}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{unitnameCode,jdbcType=VARCHAR}, #{unitname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="unitnameCode != null">
+        UNITNAME_CODE,
+      </if>
+      <if test="unitname != null">
+        UNITNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=DECIMAL},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitnameCode != null">
+        #{unitnameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null">
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitnameCode != null">
+        UNITNAME_CODE = #{record.unitnameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitname != null">
+        UNITNAME = #{record.unitname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=DECIMAL},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      UNITNAME_CODE = #{record.unitnameCode,jdbcType=VARCHAR},
+      UNITNAME = #{record.unitname,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=DECIMAL},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitnameCode != null">
+        UNITNAME_CODE = #{unitnameCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitname != null">
+        UNITNAME = #{unitname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=DECIMAL},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      UNITNAME_CODE = #{unitnameCode,jdbcType=VARCHAR},
+      UNITNAME = #{unitname,jdbcType=VARCHAR}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="VARCHAR" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="APPID" jdbcType="VARCHAR" property="appid" />
+    <result column="REFUNDDATE" jdbcType="TIMESTAMP" property="refunddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, APPID, 
+    REFUNDDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, APPID, REFUNDDATE
+      )
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=VARCHAR}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{refunddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refunddate != null">
+        REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=VARCHAR},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=VARCHAR},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="DECIMAL" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="APPID" jdbcType="VARCHAR" property="appid" />
+    <result column="REFUNDDATE" jdbcType="TIMESTAMP" property="refunddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, APPID, 
+    REFUNDDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, APPID, REFUNDDATE
+      )
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=DECIMAL}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{refunddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=DECIMAL},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=DECIMAL},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refunddate != null">
+        REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=DECIMAL},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=DECIMAL},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=DECIMAL},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcReg">
+    <id column="REGID" jdbcType="VARCHAR" property="regid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="PATIENTID" jdbcType="VARCHAR" property="patientid" />
+    <result column="CLCTIMES" jdbcType="DECIMAL" property="clctimes" />
+    <result column="INSTYPE" jdbcType="VARCHAR" property="instype" />
+    <result column="DISCOUNT" jdbcType="VARCHAR" property="discount" />
+    <result column="SCHID" jdbcType="VARCHAR" property="schid" />
+    <result column="DATEREG" jdbcType="TIMESTAMP" property="datereg" />
+    <result column="REGNO" jdbcType="DECIMAL" property="regno" />
+    <result column="CLCDATE" jdbcType="TIMESTAMP" property="clcdate" />
+    <result column="CLCTIME" jdbcType="VARCHAR" property="clctime" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="OPERATORNAME" jdbcType="VARCHAR" property="operatorname" />
+    <result column="FREEREG" jdbcType="VARCHAR" property="freereg" />
+    <result column="INVOICEID" jdbcType="VARCHAR" property="invoiceid" />
+    <result column="REFUND" jdbcType="VARCHAR" property="refund" />
+    <result column="RELATIONID" jdbcType="VARCHAR" property="relationid" />
+    <result column="ACCOUNTTYPE" jdbcType="VARCHAR" property="accounttype" />
+    <result column="ACCOUNTNO" jdbcType="VARCHAR" property="accountno" />
+    <result column="ACCOUNTDIAG" jdbcType="VARCHAR" property="accountdiag" />
+    <result column="ACCOUNTUNIT" jdbcType="VARCHAR" property="accountunit" />
+    <result column="REGAGE" jdbcType="VARCHAR" property="regage" />
+    <result column="REGSEX" jdbcType="VARCHAR" property="regsex" />
+    <result column="REGPATNAME" jdbcType="VARCHAR" property="regpatname" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="APPID" jdbcType="VARCHAR" property="appid" />
+    <result column="REFUNDDATE" jdbcType="TIMESTAMP" property="refunddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    REGID, HOSNUM, PATIENTID, CLCTIMES, INSTYPE, DISCOUNT, SCHID, DATEREG, REGNO, CLCDATE, 
+    CLCTIME, OPERATOR, OPERATORNAME, FREEREG, INVOICEID, REFUND, RELATIONID, ACCOUNTTYPE, 
+    ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, REGAGE, REGSEX, REGPATNAME, NODECODE, APPID, 
+    REFUNDDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcRegExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_REG
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcRegExample">
+    delete from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG (REGID, HOSNUM, PATIENTID, 
+      CLCTIMES, INSTYPE, DISCOUNT, 
+      SCHID, DATEREG, REGNO, 
+      CLCDATE, CLCTIME, OPERATOR, 
+      OPERATORNAME, FREEREG, INVOICEID, 
+      REFUND, RELATIONID, ACCOUNTTYPE, 
+      ACCOUNTNO, ACCOUNTDIAG, ACCOUNTUNIT, 
+      REGAGE, REGSEX, REGPATNAME, 
+      NODECODE, APPID, REFUNDDATE
+      )
+    values (#{regid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{patientid,jdbcType=VARCHAR}, 
+      #{clctimes,jdbcType=DECIMAL}, #{instype,jdbcType=VARCHAR}, #{discount,jdbcType=VARCHAR}, 
+      #{schid,jdbcType=VARCHAR}, #{datereg,jdbcType=TIMESTAMP}, #{regno,jdbcType=DECIMAL}, 
+      #{clcdate,jdbcType=TIMESTAMP}, #{clctime,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{operatorname,jdbcType=VARCHAR}, #{freereg,jdbcType=VARCHAR}, #{invoiceid,jdbcType=VARCHAR}, 
+      #{refund,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, #{accounttype,jdbcType=VARCHAR}, 
+      #{accountno,jdbcType=VARCHAR}, #{accountdiag,jdbcType=VARCHAR}, #{accountunit,jdbcType=VARCHAR}, 
+      #{regage,jdbcType=VARCHAR}, #{regsex,jdbcType=VARCHAR}, #{regpatname,jdbcType=VARCHAR}, 
+      #{nodecode,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, #{refunddate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcReg">
+    insert into CLC_REG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        REGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="patientid != null">
+        PATIENTID,
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES,
+      </if>
+      <if test="instype != null">
+        INSTYPE,
+      </if>
+      <if test="discount != null">
+        DISCOUNT,
+      </if>
+      <if test="schid != null">
+        SCHID,
+      </if>
+      <if test="datereg != null">
+        DATEREG,
+      </if>
+      <if test="regno != null">
+        REGNO,
+      </if>
+      <if test="clcdate != null">
+        CLCDATE,
+      </if>
+      <if test="clctime != null">
+        CLCTIME,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME,
+      </if>
+      <if test="freereg != null">
+        FREEREG,
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID,
+      </if>
+      <if test="refund != null">
+        REFUND,
+      </if>
+      <if test="relationid != null">
+        RELATIONID,
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE,
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO,
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG,
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT,
+      </if>
+      <if test="regage != null">
+        REGAGE,
+      </if>
+      <if test="regsex != null">
+        REGSEX,
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="appid != null">
+        APPID,
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regid != null">
+        #{regid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcRegExample" resultType="java.lang.Integer">
+    select count(*) from CLC_REG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_REG
+    <set>
+      <if test="record.regid != null">
+        REGID = #{record.regid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientid != null">
+        PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clctimes != null">
+        CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="record.instype != null">
+        INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discount != null">
+        DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schid != null">
+        SCHID = #{record.schid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datereg != null">
+        DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.regno != null">
+        REGNO = #{record.regno,jdbcType=DECIMAL},
+      </if>
+      <if test="record.clcdate != null">
+        CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clctime != null">
+        CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null">
+        OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorname != null">
+        OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freereg != null">
+        FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceid != null">
+        INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refund != null">
+        REFUND = #{record.refund,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relationid != null">
+        RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accounttype != null">
+        ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountno != null">
+        ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountdiag != null">
+        ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountunit != null">
+        ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regage != null">
+        REGAGE = #{record.regage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regsex != null">
+        REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regpatname != null">
+        REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appid != null">
+        APPID = #{record.appid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refunddate != null">
+        REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_REG
+    set REGID = #{record.regid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{record.patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{record.clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{record.instype,jdbcType=VARCHAR},
+      DISCOUNT = #{record.discount,jdbcType=VARCHAR},
+      SCHID = #{record.schid,jdbcType=VARCHAR},
+      DATEREG = #{record.datereg,jdbcType=TIMESTAMP},
+      REGNO = #{record.regno,jdbcType=DECIMAL},
+      CLCDATE = #{record.clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{record.clctime,jdbcType=VARCHAR},
+      OPERATOR = #{record.operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{record.operatorname,jdbcType=VARCHAR},
+      FREEREG = #{record.freereg,jdbcType=VARCHAR},
+      INVOICEID = #{record.invoiceid,jdbcType=VARCHAR},
+      REFUND = #{record.refund,jdbcType=VARCHAR},
+      RELATIONID = #{record.relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{record.accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{record.accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{record.accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{record.accountunit,jdbcType=VARCHAR},
+      REGAGE = #{record.regage,jdbcType=VARCHAR},
+      REGSEX = #{record.regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{record.regpatname,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{record.refunddate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="patientid != null">
+        PATIENTID = #{patientid,jdbcType=VARCHAR},
+      </if>
+      <if test="clctimes != null">
+        CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      </if>
+      <if test="instype != null">
+        INSTYPE = #{instype,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null">
+        DISCOUNT = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="schid != null">
+        SCHID = #{schid,jdbcType=VARCHAR},
+      </if>
+      <if test="datereg != null">
+        DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regno != null">
+        REGNO = #{regno,jdbcType=DECIMAL},
+      </if>
+      <if test="clcdate != null">
+        CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clctime != null">
+        CLCTIME = #{clctime,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorname != null">
+        OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      </if>
+      <if test="freereg != null">
+        FREEREG = #{freereg,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceid != null">
+        INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      </if>
+      <if test="refund != null">
+        REFUND = #{refund,jdbcType=VARCHAR},
+      </if>
+      <if test="relationid != null">
+        RELATIONID = #{relationid,jdbcType=VARCHAR},
+      </if>
+      <if test="accounttype != null">
+        ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      </if>
+      <if test="accountno != null">
+        ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      </if>
+      <if test="accountdiag != null">
+        ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      </if>
+      <if test="accountunit != null">
+        ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      </if>
+      <if test="regage != null">
+        REGAGE = #{regage,jdbcType=VARCHAR},
+      </if>
+      <if test="regsex != null">
+        REGSEX = #{regsex,jdbcType=VARCHAR},
+      </if>
+      <if test="regpatname != null">
+        REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        APPID = #{appid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunddate != null">
+        REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcReg">
+    update CLC_REG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      PATIENTID = #{patientid,jdbcType=VARCHAR},
+      CLCTIMES = #{clctimes,jdbcType=DECIMAL},
+      INSTYPE = #{instype,jdbcType=VARCHAR},
+      DISCOUNT = #{discount,jdbcType=VARCHAR},
+      SCHID = #{schid,jdbcType=VARCHAR},
+      DATEREG = #{datereg,jdbcType=TIMESTAMP},
+      REGNO = #{regno,jdbcType=DECIMAL},
+      CLCDATE = #{clcdate,jdbcType=TIMESTAMP},
+      CLCTIME = #{clctime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      OPERATORNAME = #{operatorname,jdbcType=VARCHAR},
+      FREEREG = #{freereg,jdbcType=VARCHAR},
+      INVOICEID = #{invoiceid,jdbcType=VARCHAR},
+      REFUND = #{refund,jdbcType=VARCHAR},
+      RELATIONID = #{relationid,jdbcType=VARCHAR},
+      ACCOUNTTYPE = #{accounttype,jdbcType=VARCHAR},
+      ACCOUNTNO = #{accountno,jdbcType=VARCHAR},
+      ACCOUNTDIAG = #{accountdiag,jdbcType=VARCHAR},
+      ACCOUNTUNIT = #{accountunit,jdbcType=VARCHAR},
+      REGAGE = #{regage,jdbcType=VARCHAR},
+      REGSEX = #{regsex,jdbcType=VARCHAR},
+      REGPATNAME = #{regpatname,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      APPID = #{appid,jdbcType=VARCHAR},
+      REFUNDDATE = #{refunddate,jdbcType=TIMESTAMP}
+    where REGID = #{regid,jdbcType=VARCHAR}
+  </update>
+</mapper>

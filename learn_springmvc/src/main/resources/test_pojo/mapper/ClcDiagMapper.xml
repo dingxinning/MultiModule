@@ -1,0 +1,3391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test_pojo.dao.ClcDiagMapper">
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+    <result column="ICD10" jdbcType="VARCHAR" property="icd10" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE, ICD10
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE, 
+      ICD10)
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}, 
+      #{icd10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+      <if test="icd10 != null">
+        ICD10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        #{icd10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.icd10 != null">
+        ICD10 = #{record.icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{record.icd10,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        ICD10 = #{icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{icd10,jdbcType=VARCHAR}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE
+      )
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE
+      )
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+    <result column="ICD10" jdbcType="VARCHAR" property="icd10" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE, ICD10
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE, 
+      ICD10)
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}, 
+      #{icd10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+      <if test="icd10 != null">
+        ICD10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        #{icd10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.icd10 != null">
+        ICD10 = #{record.icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{record.icd10,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        ICD10 = #{icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{icd10,jdbcType=VARCHAR}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+    <result column="ICD10" jdbcType="VARCHAR" property="icd10" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE, ICD10
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE, 
+      ICD10)
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}, 
+      #{icd10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+      <if test="icd10 != null">
+        ICD10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        #{icd10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.icd10 != null">
+        ICD10 = #{record.icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{record.icd10,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        ICD10 = #{icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{icd10,jdbcType=VARCHAR}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+    <result column="ICD10" jdbcType="VARCHAR" property="icd10" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE, ICD10
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE, 
+      ICD10)
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}, 
+      #{icd10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+      <if test="icd10 != null">
+        ICD10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        #{icd10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.icd10 != null">
+        ICD10 = #{record.icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{record.icd10,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        ICD10 = #{icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{icd10,jdbcType=VARCHAR}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE
+      )
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="test_pojo.model.ClcDiag">
+    <id column="DIAGID" jdbcType="VARCHAR" property="diagid" />
+    <result column="HOSNUM" jdbcType="VARCHAR" property="hosnum" />
+    <result column="DTMAINID" jdbcType="VARCHAR" property="dtmainid" />
+    <result column="RSHEETNO" jdbcType="VARCHAR" property="rsheetno" />
+    <result column="DIAGNO" jdbcType="VARCHAR" property="diagno" />
+    <result column="DIAGNAME" jdbcType="VARCHAR" property="diagname" />
+    <result column="DEPTCODE" jdbcType="VARCHAR" property="deptcode" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="DOCTORID" jdbcType="VARCHAR" property="doctorid" />
+    <result column="DOCTORNAME" jdbcType="VARCHAR" property="doctorname" />
+    <result column="DIAGTYPE" jdbcType="VARCHAR" property="diagtype" />
+    <result column="DIAGCLASS" jdbcType="VARCHAR" property="diagclass" />
+    <result column="SURESTATUS" jdbcType="VARCHAR" property="surestatus" />
+    <result column="CMEDFLAG" jdbcType="VARCHAR" property="cmedflag" />
+    <result column="DIAGDATE" jdbcType="TIMESTAMP" property="diagdate" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+    <result column="NODECODE" jdbcType="VARCHAR" property="nodecode" />
+    <result column="BEGINDATE" jdbcType="TIMESTAMP" property="begindate" />
+    <result column="ICD10" jdbcType="VARCHAR" property="icd10" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    DIAGID, HOSNUM, DTMAINID, RSHEETNO, DIAGNO, DIAGNAME, DEPTCODE, DEPTNAME, DOCTORID, 
+    DOCTORNAME, DIAGTYPE, DIAGCLASS, SURESTATUS, CMEDFLAG, DIAGDATE, COMMENTS, NODECODE, 
+    BEGINDATE, ICD10
+  </sql>
+  <select id="selectByExample" parameterType="test_pojo.model.ClcDiagExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CLC_DIAG
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="test_pojo.model.ClcDiagExample">
+    delete from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG (DIAGID, HOSNUM, DTMAINID, 
+      RSHEETNO, DIAGNO, DIAGNAME, 
+      DEPTCODE, DEPTNAME, DOCTORID, 
+      DOCTORNAME, DIAGTYPE, DIAGCLASS, 
+      SURESTATUS, CMEDFLAG, DIAGDATE, 
+      COMMENTS, NODECODE, BEGINDATE, 
+      ICD10)
+    values (#{diagid,jdbcType=VARCHAR}, #{hosnum,jdbcType=VARCHAR}, #{dtmainid,jdbcType=VARCHAR}, 
+      #{rsheetno,jdbcType=VARCHAR}, #{diagno,jdbcType=VARCHAR}, #{diagname,jdbcType=VARCHAR}, 
+      #{deptcode,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{doctorid,jdbcType=VARCHAR}, 
+      #{doctorname,jdbcType=VARCHAR}, #{diagtype,jdbcType=VARCHAR}, #{diagclass,jdbcType=VARCHAR}, 
+      #{surestatus,jdbcType=VARCHAR}, #{cmedflag,jdbcType=VARCHAR}, #{diagdate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{nodecode,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}, 
+      #{icd10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="test_pojo.model.ClcDiag">
+    insert into CLC_DIAG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        DIAGID,
+      </if>
+      <if test="hosnum != null">
+        HOSNUM,
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID,
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO,
+      </if>
+      <if test="diagno != null">
+        DIAGNO,
+      </if>
+      <if test="diagname != null">
+        DIAGNAME,
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="doctorid != null">
+        DOCTORID,
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME,
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE,
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS,
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS,
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG,
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+      <if test="nodecode != null">
+        NODECODE,
+      </if>
+      <if test="begindate != null">
+        BEGINDATE,
+      </if>
+      <if test="icd10 != null">
+        ICD10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="diagid != null">
+        #{diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="hosnum != null">
+        #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        #{icd10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="test_pojo.model.ClcDiagExample" resultType="java.lang.Integer">
+    select count(*) from CLC_DIAG
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CLC_DIAG
+    <set>
+      <if test="record.diagid != null">
+        DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hosnum != null">
+        HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dtmainid != null">
+        DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsheetno != null">
+        RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagno != null">
+        DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagname != null">
+        DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcode != null">
+        DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptname != null">
+        DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorid != null">
+        DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctorname != null">
+        DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagtype != null">
+        DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagclass != null">
+        DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surestatus != null">
+        SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmedflag != null">
+        CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagdate != null">
+        DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.comments != null">
+        COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nodecode != null">
+        NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begindate != null">
+        BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.icd10 != null">
+        ICD10 = #{record.icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CLC_DIAG
+    set DIAGID = #{record.diagid,jdbcType=VARCHAR},
+      HOSNUM = #{record.hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{record.dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{record.rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{record.diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{record.diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{record.deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{record.deptname,jdbcType=VARCHAR},
+      DOCTORID = #{record.doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{record.doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{record.diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{record.diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{record.surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{record.cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{record.diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{record.comments,jdbcType=VARCHAR},
+      NODECODE = #{record.nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{record.begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{record.icd10,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    <set>
+      <if test="hosnum != null">
+        HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      </if>
+      <if test="dtmainid != null">
+        DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      </if>
+      <if test="rsheetno != null">
+        RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagno != null">
+        DIAGNO = #{diagno,jdbcType=VARCHAR},
+      </if>
+      <if test="diagname != null">
+        DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcode != null">
+        DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorid != null">
+        DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorname != null">
+        DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      </if>
+      <if test="diagtype != null">
+        DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      </if>
+      <if test="diagclass != null">
+        DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      </if>
+      <if test="surestatus != null">
+        SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cmedflag != null">
+        CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      </if>
+      <if test="diagdate != null">
+        DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="nodecode != null">
+        NODECODE = #{nodecode,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null">
+        BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icd10 != null">
+        ICD10 = #{icd10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="test_pojo.model.ClcDiag">
+    update CLC_DIAG
+    set HOSNUM = #{hosnum,jdbcType=VARCHAR},
+      DTMAINID = #{dtmainid,jdbcType=VARCHAR},
+      RSHEETNO = #{rsheetno,jdbcType=VARCHAR},
+      DIAGNO = #{diagno,jdbcType=VARCHAR},
+      DIAGNAME = #{diagname,jdbcType=VARCHAR},
+      DEPTCODE = #{deptcode,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      DOCTORID = #{doctorid,jdbcType=VARCHAR},
+      DOCTORNAME = #{doctorname,jdbcType=VARCHAR},
+      DIAGTYPE = #{diagtype,jdbcType=VARCHAR},
+      DIAGCLASS = #{diagclass,jdbcType=VARCHAR},
+      SURESTATUS = #{surestatus,jdbcType=VARCHAR},
+      CMEDFLAG = #{cmedflag,jdbcType=VARCHAR},
+      DIAGDATE = #{diagdate,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      NODECODE = #{nodecode,jdbcType=VARCHAR},
+      BEGINDATE = #{begindate,jdbcType=TIMESTAMP},
+      ICD10 = #{icd10,jdbcType=VARCHAR}
+    where DIAGID = #{diagid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--骑士 Bean-->
+    <bean id="knight" class="com.spring.aop.Knight"/>
+    <!--吟游诗人 Bean-->
+    <bean id="minstrel" class="com.spring.aop.Minstrel"/>
+
+    <aop:config>
+        <aop:aspect ref="minstrel">
+            <aop:pointcut id="myPointCut" expression="execution(* com.spring.aop.Knight.query(..))"/>
+            <aop:before pointcut-ref="myPointCut" method="singBefore" />
+            <aop:after pointcut-ref="myPointCut" method="singAfter" />
+            <aop:after-returning pointcut-ref="myPointCut" method="singReturn"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--演出 Bean-->
+    <bean id="perform" class="com.spring.aop_aspect.Performance"/>
+    <!--不用@Aspect注解 的观众 Bean-->
+    <bean id="audience" class="com.spring.aop_aspect.Audience"/>
+    <aop:config>
+        <aop:aspect ref="audience">
+            <aop:pointcut id="pointCutAudience"
+                          expression="execution(* com.spring.aop_aspect.Performance.perform(..))"/>
+            <aop:before pointcut-ref="pointCutAudience"
+                        method="silenceCellPhones" />
+            <aop:before pointcut="execution(* com.spring.aop_aspect.Performance.perform(int)) and args(peopleNum)"
+                        method="countNum" />
+            <aop:after pointcut-ref="pointCutAudience"
+                       method="taskSeats"/>
+            <aop:after-returning pointcut-ref="pointCutAudience"
+                                 returning="peopleNum"
+                                 method="applause" />
+            <aop:after-throwing pointcut-ref="pointCutAudience"
+                                method="demandRefund"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

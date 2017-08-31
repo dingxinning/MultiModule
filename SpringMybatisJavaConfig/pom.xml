@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>MultiModule</artifactId>
+        <groupId>com.multi.project</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>SpringMybatisJavaConfig</artifactId>
+    <packaging>war</packaging>
+    <name>SpringMybatisJavaConfig Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+
+        <!--引入公共模块-->
+        <dependency>
+            <groupId>com.multi.project</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--引入web模块-->
+        <dependency>
+            <groupId>com.multi.project</groupId>
+            <artifactId>common_web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--servlet/jsp api start-->
+        <!-- provided 类型的依赖需要在子项目中引入，不能在上层模块 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <!--servlet/jsp api end-->
+
+        <!--mybatis start-->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <!--mybatis spring -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+        <!--mybatis end-->
+
+    </dependencies>
+    <build>
+        <finalName>SpringMybatisJavaConfig</finalName>
+    </build>
+</project>
