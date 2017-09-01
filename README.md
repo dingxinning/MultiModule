@@ -12,7 +12,12 @@ learn java&amp;spring&amp;...
 - Java8
 - mongodb
 - quartz
+- 反射机制
+- 序列化&反序列化
+- json转换
 - httpClient
+- RestTemplate
+- 各种常用utils
 - ...
 4. 学习 Groovy
 5. 学习 Spring
