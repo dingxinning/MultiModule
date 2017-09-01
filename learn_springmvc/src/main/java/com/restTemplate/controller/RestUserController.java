@@ -22,6 +22,6 @@ public class RestUserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseBody
     public String postUser(@RequestBody RestUser restUser) {
-        return restUser.toString();
+        return JSON.toJSONString(restUser);
     }
 }

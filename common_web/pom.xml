@@ -111,21 +111,6 @@
         </dependency>
         <!--thymeleaf end-->
 
-        <!--JSON start-->
-        <!--报错406 @ResponseBody,要把对象转换成json格式需要的包-->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.8.8</version>
-        </dependency>
-        <!--基于Jackson JSON处理器的高性能数据绑定包-->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
-        <!--JSON start-->
-
         <!--log4j 日志输出 start-->
         <dependency>
             <groupId>log4j</groupId>
