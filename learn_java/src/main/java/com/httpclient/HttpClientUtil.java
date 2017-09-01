@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.config.RequestConfig;
@@ -401,6 +402,16 @@ public class HttpClientUtil {
     public static void main(String[] args) throws Exception {
 
         System.out.println(sendHttpGet("http://www.baidu.com"));
+
+        System.out.println(sendHttpGet("http://localhost:8080/restTemplate/user/22/55"));
+
+        JSONObject parm = new JSONObject();
+        parm.put("id", 1);
+        parm.put("age", 17);
+        parm.put("name", "wang");
+        parm.put("address", "jiexi");
+        parm.put("hobay", "pingpang");
+        System.out.println(sendHttpPostJson("http://localhost:8080/restTemplate/user", parm.toString()));
 
     }
 }
