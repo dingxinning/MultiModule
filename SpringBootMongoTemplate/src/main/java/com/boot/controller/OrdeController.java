@@ -16,8 +16,9 @@ public class OrdeController {
     OrderService orderService;
 
     @RequestMapping(value = "/order",method = RequestMethod.GET)
-    public void addOrder() {
+    public String addOrder() {
         orderService.addOrder();
         System.out.println("保存成功！！！");
+        return "保存成功！";
     }
 }
