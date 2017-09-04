@@ -16,6 +16,17 @@ public class IsHasKuoHao {
         System.out.println(cnBrackets("青霉素(+)(-)（-）（+）"));
 
         System.out.println("青霉素(+)".split("\\(")[0]);
+        System.out.println("(+)".split("\\(")[0] + "   " + "(+)".split("\\(")[1]);
+
+        Integer integer = 37;
+//        System.out.println((Double) integer);  // Java.lang.Integer cannot be cast to java.lang.Double
+        System.out.println(string2Double(integer.toString()));
+        System.out.println(string2Integer(integer.toString()));
+
+        Double dou = 37.5;
+//        System.out.println((Integer)dou);  // Java.lang.Double cannot be cast to java.lang.Integer
+        System.out.println(string2Integer(dou.toString()));
+        System.out.println(string2Double(dou.toString()));
 
     }
 
@@ -35,5 +46,20 @@ public class IsHasKuoHao {
             return matcher.group();
         }
         return null;
+    }
+
+    public static Integer string2Integer(String string){
+        Pattern pattern = Pattern.compile("\\.");
+        Matcher matcher = pattern.matcher(string);
+        if(matcher.find()){
+            String str = string.substring(0, string.indexOf("."));
+            return Integer.parseInt(str);
+        }else {
+            return Integer.parseInt(string);
+        }
+    }
+
+    public static Double string2Double(String string) {
+        return Double.valueOf(string);
     }
 }
