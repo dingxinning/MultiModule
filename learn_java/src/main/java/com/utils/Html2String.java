@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 public class Html2String {
     public static void main(String[] args) {
 
-        String html = readTxtFile02("C:\\Users\\yxrsw\\Desktop\\new.html");
+        String html = readTxtFile02("C:\\Users\\yxrsw\\Desktop\\上报\\index.html");
         System.out.println(html);
     }
 

@@ -3,6 +3,7 @@ package com.utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -59,9 +60,12 @@ public class Date2String {
         System.out.println(stampToDate(s2));
 
 
+        LocalDate localDate = LocalDate.of(2017, 9, 12);
+        Date date1 = DateConversion.localDate2Date(localDate);
+        System.out.println(DateConversion.date2long(date1));
+        System.out.println(DateConversion.long2date(DateConversion.date2long(date1)));
 
     }
-
 
     public static String dateToStamp(String s) throws ParseException{
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
