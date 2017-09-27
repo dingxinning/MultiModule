@@ -18,6 +18,7 @@
         <module>learn_springmvc</module>
         <module>learn_spring</module>
         <module>SpringMybatisJavaConfig</module>
+        <module>ShiroQuickStart</module>
     </modules>
 
     <build>
