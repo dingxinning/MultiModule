@@ -23,6 +23,7 @@ learn java&amp;spring&amp;...
 - json转换
 - httpClient
 - RestTemplate
+- 并发编程
 - 各种常用utils
 - ...
 4. 学习 Groovy
