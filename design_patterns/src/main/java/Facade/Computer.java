@@ -1,5 +1,9 @@
 package Facade;
 
+import Facade.impl.CPU;
+import Facade.impl.Disk;
+import Facade.impl.Memory;
+
 /**
  * Created by Wuxiang on 2017/3/19.
  * Computer类就是一个facade类

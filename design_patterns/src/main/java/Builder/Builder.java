@@ -1,5 +1,9 @@
 package Builder;
 
+import Builder.sender.MailSender;
+import Builder.sender.Sender;
+import Builder.sender.SmsSender;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,19 +12,20 @@ import java.util.List;
  * 建造者类
  */
 public class Builder {
-    private List<Sender> list=new ArrayList<Sender>();
-
     //将list返回，以供调用
-    public List<Sender> produceMailSender(int count){
-        for(int i=0; i<count; i++){
+    public List<Sender> produceMailSender(int count) {
+        List<Sender> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
             list.add(new MailSender());
         }
         return list;
     }
 
-    public void produceSmsSender(int count){
-        for(int i=0; i<count; i++){
+    public List<Sender> produceSmsSender(int count) {
+        List<Sender> list = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
             list.add(new SmsSender());
         }
+        return list;
     }
 }

@@ -1,6 +1,4 @@
-package Bridge;
-
-import Adapter.InterfaceAdapter.Wrapper;
+package Bridge.source;
 
 /**
  * Created by yxrsw on 2017/2/13.

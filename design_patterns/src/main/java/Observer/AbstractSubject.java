@@ -1,5 +1,7 @@
 package Observer;
 
+import Observer.observer.Observer;
+
 import java.util.Enumeration;
 import java.util.Vector;
 

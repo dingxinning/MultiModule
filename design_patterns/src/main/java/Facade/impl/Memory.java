@@ -1,4 +1,4 @@
-package Facade;
+package Facade.impl;
 
 /**
  * Created by Wuxiang on 2017/3/19.

@@ -1,4 +1,5 @@
-package Builder;
+package Builder.sender;
+
 /*
 共同的接口
  */

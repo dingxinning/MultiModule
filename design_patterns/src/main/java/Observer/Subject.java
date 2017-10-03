@@ -1,5 +1,7 @@
 package Observer;
 
+import Observer.observer.Observer;
+
 /**
  * Created by Wuxiang on 2017/7/21.
  */

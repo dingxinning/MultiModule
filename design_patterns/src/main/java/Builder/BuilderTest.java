@@ -1,5 +1,7 @@
 package Builder;
 
+import Builder.sender.Sender;
+
 import java.util.List;
 
 /**
@@ -10,8 +12,9 @@ public class BuilderTest {
     public static void main(String[] args) {
         Builder builder = new Builder();
 
-        int mailNumber = 5;
-        List <Sender> senderList=builder.produceMailSender(mailNumber);
+        List<Sender> senderList=builder.produceMailSender(2);
+        List<Sender> smsList=builder.produceSmsSender(3);
+        senderList.addAll(smsList);
         for (Sender sender : senderList) {
             sender.Send();
         }
