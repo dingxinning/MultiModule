@@ -27,7 +27,7 @@
 
 ## 两个类之间  
 15. Observer  观察者模式
-16. Iterator  迭代子模式
+16. IteratorSubPattern  迭代子模式
 17. Chain of Responsibility  责任链模式
 18. Command  命令模式
 
