@@ -29,15 +29,3 @@ hs_err_pid*
 .idea
 
 */target
-
-body_temperature/src/main/webapp/WEB-INF/css/
-common/src/
-common_web/src/main/java/
-common_web/src/main/resources/
-design_patterns/src/main/java/Strategy/
-design_patterns/src/main/java/TemplateMethod/
-design_patterns/src/main/resources/
-design_patterns/src/test/
-learn_groovy/out/
-learn_java/src/test/
-online_charging/src/main/resources/

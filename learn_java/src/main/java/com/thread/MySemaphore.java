@@ -9,7 +9,10 @@ import java.util.concurrent.Semaphore;
  * 2. Semaphore 信号量
  *
  * 信号量维护了一个许可集合
+ * 如有必要，在许可可用前会阻塞每一个 acquire()，然后再获取该许可。
+ * 每个 release() 添加一个许可
  *
+ * Semaphore 通常用于限制可以访问某些资源（物理或逻辑的）的线程数目。
  * 实际情况：大家排队上厕所，厕所只有两个位置，来了10个人需要排队。
  */
 public class MySemaphore extends Thread {
