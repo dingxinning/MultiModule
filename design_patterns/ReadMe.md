@@ -20,7 +20,7 @@
 11. Composite 组合模式
 12. Flyweight 享元模式
 
-# 行为型模式 （未完）
+# 行为型模式
 ## 父类与子类：
 13. Strategy 策略模式
 14. Template Method  模版方法模式
@@ -32,7 +32,7 @@
 18. Command  命令模式
 
 ## 类的状态   
-19. Memento  备忘录模式
+19. Memento  备忘录模式  （未完）
 20. State 状态模式
 
 ## 通过中间类  
