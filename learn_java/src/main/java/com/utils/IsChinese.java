@@ -6,6 +6,9 @@ package com.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ *  判断 字符串是否全是中文
+ */
 public class IsChinese {
     //英文占1byte，非英文（可认为是中文）占2byte，根据这个特性来判断字符
     public static boolean checkChar(char ch) {
