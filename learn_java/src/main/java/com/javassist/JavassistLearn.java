@@ -25,7 +25,7 @@ public class JavassistLearn {
         ClassPool cp = ClassPool.getDefault();
         CtClass ctClass = cp.makeClass("com.javassist.JavassistClass");
 
-        StringBuffer body = null;
+        // 创建name字段，生成get set 方法
         //参数  1：属性类型  2：属性名称  3：所属类CtClass
         CtField ctField = new CtField(cp.get("java.lang.String"), "name", ctClass);
         ctField.setModifiers(Modifier.PRIVATE);
@@ -34,13 +34,16 @@ public class JavassistLearn {
         ctClass.addMethod(CtNewMethod.getter("getName", ctField));
         ctClass.addField(ctField, Initializer.constant("default"));
 
+        // 构造函数
         //参数  1：参数类型   2：所属类CtClass
         CtConstructor ctConstructor = new CtConstructor(new CtClass[]{}, ctClass);
+        StringBuffer body;
         body = new StringBuffer();
         body.append("{\n name=\"me\";\n}");
         ctConstructor.setBody(body.toString());
         ctClass.addConstructor(ctConstructor);
 
+        // 公共方法
         //参数：  1：返回类型  2：方法名称  3：传入参数类型  4：所属类CtClass
         CtMethod ctMethod = new CtMethod(CtClass.voidType, "execute", new CtClass[]{}, ctClass);
         ctMethod.setModifiers(Modifier.PUBLIC);
@@ -51,6 +54,8 @@ public class JavassistLearn {
         body.append("\n}");
         ctMethod.setBody(body.toString());
         ctClass.addMethod(ctMethod);
+
+        // 利用反射，调用方法
         Class<?> c = ctClass.toClass();
         Object o = c.newInstance();
         Method method = o.getClass().getMethod("execute", new Class[]{});
