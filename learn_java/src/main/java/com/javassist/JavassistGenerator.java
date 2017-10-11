@@ -49,7 +49,7 @@ public class JavassistGenerator {
         System.out.println(getter.invoke(o));
 
         // 调用其setName方法
-        Method setter = o.getClass().getMethod("setName", new Class[] {String.class});
+        Method setter = o.getClass().getMethod("setName", String.class);
         setter.invoke(o, "Adam");
         System.out.println(getter.invoke(o));
 

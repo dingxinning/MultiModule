@@ -58,8 +58,8 @@ public class JavassistLearn {
         // 利用反射，调用方法
         Class<?> c = ctClass.toClass();
         Object o = c.newInstance();
-        Method method = o.getClass().getMethod("execute", new Class[]{});
+        Method method = o.getClass().getMethod("execute");
         //调用字节码生成类的execute方法
-        method.invoke(o, new Object[]{});
+        method.invoke(o);
     }
 }

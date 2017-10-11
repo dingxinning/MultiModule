@@ -4,6 +4,7 @@ import javassist.*;
 
 /**
  * Created by Wuxiang on 2017/10/11.
+ * 创建类实例
  */
 public class JavassistGen2 {
     public static void main(String[] args) throws Exception {
