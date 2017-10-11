@@ -39,5 +39,10 @@ public class MyLocalDate {
 
         long aaa = ChronoUnit.DAYS.between(localDate2, LocalDate.now());
         System.out.println(aaa);
+
+
+        // 测试周数  返回 1-7
+        LocalDate localDate = LocalDate.of(2017,10,15);
+        System.out.println(localDate.getDayOfWeek().getValue());
     }
 }

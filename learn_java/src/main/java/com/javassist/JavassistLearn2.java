@@ -8,6 +8,10 @@ import javassist.util.proxy.ProxyFactory;
 
 /**
  * Created by Wuxiang on 2017/10/10.
+ *
+ * 动态代理的接口 ProxyFactory
+ *
+ * 效率非常低，可测试时使用，不建议在生产环境下使用
  */
 public class JavassistLearn2 {
 
