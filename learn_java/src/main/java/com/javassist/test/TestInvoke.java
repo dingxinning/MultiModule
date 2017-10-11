@@ -2,7 +2,6 @@ package com.javassist.test;
 
 import javassist.*;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,15 +39,15 @@ public class TestInvoke {
         Class<?> clas = object.getClass();
 
         System.out.println(clas.getMethod("get" + stringList1.get(0)).invoke(object));
-        clas.getMethod("set" + stringList1.get(0), String.class).invoke(object, "庞");
+        clas.getMethod("set" + stringList1.get(0), String.class).invoke(object, "庞德");
         System.out.println(clas.getMethod("get" + stringList1.get(0)).invoke(object));
 
         System.out.println(clas.getMethod("get" + stringList1.get(1)).invoke(object));
-        clas.getMethod("set" + stringList1.get(1), Long.class).invoke(object, (long)123324);
+        clas.getMethod("set" + stringList1.get(1), Long.class).invoke(object, (long)22);
         System.out.println(clas.getMethod("get" + stringList1.get(1)).invoke(object));
 
         System.out.println(clas.getMethod("get" + stringList2.get(2)).invoke(object));
-        clas.getMethod("set" + stringList2.get(2), String.class).invoke(object, "青霉素");
+        clas.getMethod("set" + stringList2.get(2), String.class).invoke(object, "清开灵");
         System.out.println(clas.getMethod("get" + stringList2.get(2)).invoke(object));
 
         // 将.class文件保存写入
