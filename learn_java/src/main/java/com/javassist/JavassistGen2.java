@@ -9,7 +9,7 @@ import javassist.*;
 public class JavassistGen2 {
     public static void main(String[] args) throws Exception {
         ClassPool pool = ClassPool.getDefault();
-        CtClass cc = pool.makeClass("com.javassist.User");
+        CtClass cc = pool.makeClass("com.javassist.TestUser");
 
         //创建属性
         CtField field01 = CtField.make("private int id;", cc);
@@ -43,5 +43,7 @@ public class JavassistGen2 {
         Object o = c.getConstructor(int.class, String.class).newInstance(1, "123");
         System.out.println(o.getClass().getMethod("getName").invoke(o));
         System.out.println(o.getClass().getMethod("getId").invoke(o));
+
+        cc.writeFile();
     }
 }

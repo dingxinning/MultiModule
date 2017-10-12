@@ -1,7 +1,9 @@
 package com.javassist.test;
 
+import com.json.TestObject;
 import javassist.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class TestInvoke {
         List<String> stringList2 = Arrays.asList(strings2);
 
         ClassPool pool = ClassPool.getDefault();
-        CtClass ctClass = pool.makeClass("com.javassist.test.NursingInfo");
+        CtClass ctClass = pool.makeClass("com.javassist.TestInvoke");
 
         // 无参构造函数
         CtConstructor cons = new CtConstructor(null, ctClass);
@@ -34,9 +36,16 @@ public class TestInvoke {
             }
         });
 
-        Class<?> c = ctClass.toClass();
-        Object object = c.newInstance();
-        Class<?> clas = object.getClass();
+        Class<?> clas = ctClass.toClass();
+        // 以下两行输出类似，形式相同
+        System.out.println(clas);
+        System.out.println(TestObject.class);
+        Object object = clas.newInstance();
+        // 利用对象的getClass也可获取Class
+        System.out.println(object.getClass());
+
+        List<Object> clasList = new ArrayList<>();
+        clasList.add(object);
 
         System.out.println(clas.getMethod("get" + stringList1.get(0)).invoke(object));
         clas.getMethod("set" + stringList1.get(0), String.class).invoke(object, "庞德");
@@ -54,8 +63,10 @@ public class TestInvoke {
         ctClass.writeFile();
 
         // 创建新实例
-        Object o = Class.forName("com.javassist.test.NursingInfo").newInstance();
-        System.out.println(o.getClass().getMethod("get" + stringList1.get(0)).invoke(o));
+        Class<?> newClas = Class.forName("com.javassist.TestInvoke");
+        Object o = newClas.newInstance();
+        System.out.println(newClas.getMethod("get" + stringList1.get(0)).invoke(o));
+
     }
 
     private static void createGetSetFiled(CtClass type, String name, CtClass ctClass) throws Exception{

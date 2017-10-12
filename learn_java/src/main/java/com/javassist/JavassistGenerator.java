@@ -1,24 +1,16 @@
 package com.javassist;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtConstructor;
-import javassist.CtField;
-import javassist.CtNewMethod;
-import javassist.Modifier;
-import javassist.NotFoundException;
+import javassist.*;
 import javassist.CtField.Initializer;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by Wuxiang on 2017/10/10.
  * 动态创建Java类二进制字节码 并通过反射调用的示例
  */
 public class JavassistGenerator {
-    public static void main(String[] args) throws CannotCompileException, NotFoundException, ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+    public static void main(String[] args) throws Exception {
         // 创建类
         ClassPool pool = ClassPool.getDefault();
         CtClass cls = pool.makeClass("com.javassist.TestClass");
@@ -57,5 +49,7 @@ public class JavassistGenerator {
         o = Class.forName("com.javassist.TestClass").getConstructor(String.class).newInstance("Liu Jian");
         getter = o.getClass().getMethod("getName");
         System.out.println(getter.invoke(o));
+
+        cls.writeFile();
     }
 }

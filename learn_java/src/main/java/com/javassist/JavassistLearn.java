@@ -55,6 +55,8 @@ public class JavassistLearn {
         ctMethod.setBody(body.toString());
         ctClass.addMethod(ctMethod);
 
+        ctClass.writeFile();
+
         // 利用反射，调用方法
         Class<?> c = ctClass.toClass();
         Object o = c.newInstance();
