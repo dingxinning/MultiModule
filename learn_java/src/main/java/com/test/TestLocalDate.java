@@ -1,4 +1,4 @@
-package com.utils;
+package com.test;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 /**
  * Created by Wuxiang on 2017/8/11.
  */
-public class MyLocalDate {
+public class TestLocalDate {
     public static void main(String[] args) {
         // 计算两个LocalDate 时间差
         LocalDate localDate1 = LocalDate.of(2017,9,4);

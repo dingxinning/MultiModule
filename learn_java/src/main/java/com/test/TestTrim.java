@@ -1,11 +1,11 @@
-package com.utils;
+package com.test;
 
 import java.util.Objects;
 
 /**
  * Created by Wuxiang on 2017/9/14.
  */
-public class TrimTest {
+public class TestTrim {
     public static void main(String[] args) {
         String aaa = "123  ";
         String bbb = " 1 ";

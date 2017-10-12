@@ -1,5 +1,6 @@
-package com.utils;
+package com.test;
 
+import com.utils.ReadResourcesFile;
 import org.apache.poi.hpsf.DocumentSummaryInformation;
 import org.apache.poi.hpsf.SummaryInformation;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -14,12 +15,13 @@ import java.util.Date;
 /**
  * Created by Wuxiang on 2017/3/11.
  */
-public class ExcelTest {
+public class TestExcel {
 
     public static void main(String[] args) throws IOException
     {
         //1. 创建Workbook和Sheet
-        String filePath="C:\\Users\\yxrsw\\Desktop\\sample.xls";//文件路径
+        String filePath= ReadResourcesFile.getPath("sample.xls");//文件路径
+        System.out.println("xls文件存放于："+filePath);
         HSSFWorkbook workbook = new HSSFWorkbook();//创建Excel文件(Workbook)
 
         //2.创建单元格
@@ -46,6 +48,6 @@ public class ExcelTest {
         FileOutputStream out = new FileOutputStream(filePath);
         workbook.write(out);//保存Excel文件
         out.close();//关闭文件流
-        System.out.println("OK!");
+        System.out.println("生成完毕，OK!");
     }
 }

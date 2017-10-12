@@ -1,4 +1,4 @@
-package com.utils;
+package com.test;
 
 /**
  * Created by Wuxiang on 2017/9/11.
