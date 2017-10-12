@@ -1,4 +1,4 @@
-package com.javassist.test;
+package com.javassist;
 
 import com.json.TestObject;
 import javassist.*;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Wuxiang on 2017/10/11.
  */
-public class TestInvoke {
+public class MyTest {
     public static void main(String[] args) throws Exception {
         String[] strings1 = {"姓名", "性别"};
         List<String> stringList1 = Arrays.asList(strings1);
@@ -18,7 +18,7 @@ public class TestInvoke {
         List<String> stringList2 = Arrays.asList(strings2);
 
         ClassPool pool = ClassPool.getDefault();
-        CtClass ctClass = pool.makeClass("com.javassist.TestInvoke");
+        CtClass ctClass = pool.makeClass("com.javassist.MyTestClass");
 
         // 无参构造函数
         CtConstructor cons = new CtConstructor(null, ctClass);
@@ -63,7 +63,7 @@ public class TestInvoke {
         ctClass.writeFile();
 
         // 创建新实例
-        Class<?> newClas = Class.forName("com.javassist.TestInvoke");
+        Class<?> newClas = Class.forName("com.javassist.MyTestClass");
         Object o = newClas.newInstance();
         System.out.println(newClas.getMethod("get" + stringList1.get(0)).invoke(o));
 
