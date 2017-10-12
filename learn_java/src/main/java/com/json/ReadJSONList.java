@@ -1,5 +1,6 @@
 package com.json;
 
+import com.utils.ReadResourcesFile;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,7 +14,7 @@ import java.text.SimpleDateFormat;
  */
 public class ReadJSONList {
     public static void main(String[] args) throws Exception {
-        String context = new ReadFile().ReadFile("C:\\Users\\yxrsw\\Desktop\\json_list.json");
+        String context = new ReadFile().ReadFile(ReadResourcesFile.getPath("json_list.json"));
         JSONArray jsonArray = new JSONArray(context);
         int iSize = jsonArray.length();
         System.out.println("Size:" + iSize);

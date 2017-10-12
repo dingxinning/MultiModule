@@ -1,5 +1,6 @@
 package com.json;
 
+import com.utils.ReadResourcesFile;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,7 +17,7 @@ public class ReadSimpleJSON {
     public static void main(String[] args) {
         JSONParser parser = new JSONParser();
         try {
-            Object object = parser.parse(new FileReader("C:\\Users\\yxrsw\\Desktop\\simple_json_data.json"));
+            Object object = parser.parse(new FileReader(ReadResourcesFile.getPath("simple_json_data.json")));
             JSONObject jsonObject = (JSONObject)object;
             String name = (String) jsonObject.get("Name");
             Long age = (Long) jsonObject.get("Age");
