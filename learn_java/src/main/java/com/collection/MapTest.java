@@ -17,6 +17,8 @@ public class MapTest {
         map.put("age", "18");
         map.put("sex", "man");
         map.remove("name");
+        map.put(null, "空");
+
         //遍历hashmap的4种方式
         for (Entry<String, String> entry : map.entrySet()) {
             System.out.print(entry.getKey()+": ");

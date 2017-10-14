@@ -7,8 +7,8 @@ import java.util.*;
 
 /**
  * Created by Wuxiang on 2017/7/31.
- * TreeSet 按照结果的升序保存 key
  * HashSet 提供最快的查找技术，保存无顺序
+ * TreeSet 按照结果的升序保存 key
  * LinkedHashSet  按照被添加的顺序保存对象
  */
 public class SetSort {
