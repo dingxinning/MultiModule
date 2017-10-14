@@ -3,11 +3,13 @@ package com.collection;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by Administrator on 2016/12/29.
  * 遍历 list
- * 使用方法 add、remove、subList、contains、containAll
+ * 使用方法 add、remove、subList、contains、containAll、retainAll
+ * ListIterator
  */
 public class ListTest {
     public static void main(String []args){
@@ -42,9 +44,21 @@ public class ListTest {
         System.out.println();
 
         List<String> newlist = list.subList(2, 4);
-        System.out.println("截取子列表："+newlist.toString());
+        System.out.println("截取子列表：" + newlist.toString());
         String str = list.get(1);
         System.out.println("是否存在：" + list.contains(str));
         System.out.println("是否存在：" + list.containsAll(newlist));
+
+        // 取 交集
+        list.retainAll(newlist);
+        System.out.println(list.toString());
+
+        // ListIterator 用于List的访问，可以双向移动
+        ListIterator<String> listIterator = list.listIterator();
+        while (listIterator.hasNext()) {
+            System.out.println(listIterator.next() + " . "
+                    + listIterator.nextIndex() + " . "
+                    + listIterator.previousIndex());
+        }
     }
 }
