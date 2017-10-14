@@ -14,6 +14,9 @@ import java.util.Date;
 
 /**
  * Created by Wuxiang on 2017/3/11.
+ *
+ * 生成 excel
+ * 生成文件的位置位于 target/classes目录下
  */
 public class TestExcel {
 

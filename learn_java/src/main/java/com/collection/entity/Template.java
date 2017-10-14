@@ -1,4 +1,4 @@
-package com.collection;
+package com.collection.entity;
 
 /**
  * Created by Wuxiang on 2017/7/31.

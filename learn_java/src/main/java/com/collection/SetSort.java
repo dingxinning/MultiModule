@@ -1,10 +1,15 @@
 package com.collection;
 
+import com.collection.entity.Template;
+import com.collection.entity.TemplateNew;
+
 import java.util.*;
-import java.util.function.Function;
 
 /**
  * Created by Wuxiang on 2017/7/31.
+ * TreeSet 按照结果的升序保存 key
+ * HashSet 提供最快的查找技术，保存无顺序
+ * LinkedHashSet  按照被添加的顺序保存对象
  */
 public class SetSort {
     public static void main(String[] args) {
