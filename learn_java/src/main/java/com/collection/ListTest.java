@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/12/29.
  * 遍历 list
+ * 使用方法 add、remove、subList、contains、containAll
  */
 public class ListTest {
     public static void main(String []args){
@@ -35,8 +36,15 @@ public class ListTest {
         }
         System.out.println();
 
-        for (int i=0;i<list.size();i++) {
-            System.out.print(list.get(i)+" ");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print(list.get(i) + " ");
         }
+        System.out.println();
+
+        List<String> newlist = list.subList(2, 4);
+        System.out.println("截取子列表："+newlist.toString());
+        String str = list.get(1);
+        System.out.println("是否存在：" + list.contains(str));
+        System.out.println("是否存在：" + list.containsAll(newlist));
     }
 }
