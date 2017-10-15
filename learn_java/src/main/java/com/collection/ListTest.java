@@ -7,6 +7,9 @@ import java.util.ListIterator;
 
 /**
  * Created by Administrator on 2016/12/29.
+ * ArrayList 擅长随机访问元素
+ * LinkedList 在list中间插入和移除更高效
+ *
  * 遍历 list
  * 使用方法 add、remove、subList、contains、containAll、retainAll
  * ListIterator
