@@ -6,6 +6,8 @@ import java.util.Stack;
  * Created by Wuxiang on 2017/10/15.
  * Stack 栈
  * peek()方法：返回栈顶元素，但不删除
+ *
+ * LinkedList 添加了可以使其用作 栈、队列、双端队列的方法
  */
 public class StackTest {
     public static void main(String[] args) {

@@ -17,18 +17,21 @@ public class MapTest {
         map.put("sex", "man");
         map.remove("name");
         map.put(null, "空");
+        System.out.println(map);
+        System.out.println("test: is 包含 'age' key：" + map.containsKey("age"));
+        System.out.println("test: is 包含 '19' value：" + map.containsValue("19"));
 
-        //遍历hashmap的4种方式
+        System.out.println("\n ---遍历hashmap的4种方式---");
         for (Entry<String, String> entry : map.entrySet()) {
             System.out.print(entry.getKey()+": ");
             System.out.print(entry.getValue()+".  ");
         }
-        System.out.println("");
+        System.out.println();
 
         for (String key : map.keySet()) {
             System.out.print(map.get(key)+" ,");
         }
-        System.out.println("");
+        System.out.println();
 
         Iterator<Entry<String, String>> iterator = map.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -36,14 +39,14 @@ public class MapTest {
             System.out.print(entry.getKey()+": ");
             System.out.print(entry.getValue()+".  ");
         }
-        System.out.println("");
+        System.out.println();
 
         Set<Entry<String, String>> entrySet = map.entrySet();
         for (Entry<String, String> entry : entrySet) {
             System.out.print(entry.getKey()+": ");
             System.out.print(entry.getValue()+".  ");
         }
-        System.out.println();
+        System.out.println("\n");
 
         // Map 实现对随机数进行计数
         Random rand = new Random(47);
