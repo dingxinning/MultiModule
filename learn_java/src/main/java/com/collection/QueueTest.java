@@ -9,6 +9,7 @@ import java.util.Random;
  * Queue 队列
  * offer() 方法： 将元素插入到 队尾
  * peek() 方法： 在不移除的情况下，返回队头
+ * poll() / remove()方法： 移除并返回队头
  *
  * LinkedList 添加了可以使其用作 栈、队列、双端队列的方法
  */
@@ -28,8 +29,13 @@ public class QueueTest {
         printQ(queue);
 
         Queue<Character> qc = new LinkedList<>();
-        for (char c : "Brontosaurus".toCharArray())
+        for (char c : "Brontosaurus".toCharArray()){
             qc.offer(c);
+        }
+        qc.add('a');
+        System.out.println("队头元素：" + qc.peek());
+        qc.poll();
+        System.out.println("队头元素：" + qc.peek());
         printQ(qc);
     }
 }

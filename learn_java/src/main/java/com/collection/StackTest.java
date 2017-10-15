@@ -15,7 +15,11 @@ public class StackTest {
         for (String s : "My dog has fleas".split(" ")) {
             stack.push(s);
         }
+        stack.push("addItem");
         System.out.println("栈顶元素：" + stack.peek());
+        stack.pop();
+        System.out.println("栈顶元素：" + stack.peek());
+
         while (!stack.empty()) {
             System.out.print(stack.pop() + " ");
         }
