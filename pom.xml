@@ -14,7 +14,6 @@
         <module>learn_java</module>
         <module>design_patterns</module>
         <module>common_web</module>
-        <module>body_temperature</module>
         <module>learn_springmvc</module>
         <module>learn_spring</module>
         <module>SpringMybatisJavaConfig</module>
