@@ -20,10 +20,6 @@ public class ClassUtil {
         return filepath;
     }
 
-    public void setFilepath(String filepath) {
-        this.filepath = filepath;
-    }
-
     @SuppressWarnings({"rawtypes", "unchecked"})
     public DynamicBean dynamicClass(Object object) throws Exception {
         HashMap returnMap = new HashMap();
@@ -32,13 +28,10 @@ public class ClassUtil {
         Properties prop = new Properties();
         String sourcepackage = object.getClass().getName();
         String classname = sourcepackage.substring(sourcepackage.lastIndexOf(".") + 1);
-        System.out.println(classname);
-        InputStream in = ClassUtil.class.getResourceAsStream(filepath + classname + ".properties");
+        InputStream in = ClassUtil.class.getResourceAsStream(getFilepath() + classname + ".properties");
         prop.load(in);
 
         Set<String> keylist = prop.stringPropertyNames();
-        System.out.println(keylist);
-
         Class type = object.getClass();
         BeanInfo beanInfo = Introspector.getBeanInfo(type);
         PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
@@ -60,26 +53,9 @@ public class ClassUtil {
         Iterator<String> iterator = keylist.iterator();
         while (iterator.hasNext()) {
             String key = iterator.next();
-            returnMap.put(key, prop.getProperty(key));
             typeMap.put(key, Class.forName("java.lang.String"));
         }
         //map转换成实体对象
-        DynamicBean bean = new DynamicBean(typeMap);
-        //赋值
-        Set keys = typeMap.keySet();
-        for (Iterator it = keys.iterator(); it.hasNext(); ) {
-            String key = (String) it.next();
-            bean.setValue(key, returnMap.get(key));
-        }
-        return bean;
-    }
-
-    public static void main(String[] args) throws Exception {
-        DynamicBean bean = new ClassUtil().dynamicClass(new LeapRole());
-        bean.setValue("name","www");
-        System.out.println("name=" + bean.getValue("name"));
-        bean.setValue("address", "nanjing");
-        System.out.println("address=" + bean.getValue("address"));
-        System.out.println(bean.toString());
+        return new DynamicBean(typeMap);
     }
 }
