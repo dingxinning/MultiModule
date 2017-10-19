@@ -21,17 +21,17 @@ public class ClassUtil {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    public DynamicBean dynamicClass(Object object) throws Exception {
+    public DynamicBean dynamicClass(Object object, Set<String> keylist) throws Exception {
         HashMap returnMap = new HashMap();
         HashMap typeMap = new HashMap();
-        //读取配置文件
-        Properties prop = new Properties();
-        String sourcepackage = object.getClass().getName();
-        String classname = sourcepackage.substring(sourcepackage.lastIndexOf(".") + 1);
-        InputStream in = ClassUtil.class.getResourceAsStream(getFilepath() + classname + ".properties");
-        prop.load(in);
+//        //读取配置文件
+//        Properties prop = new Properties();
+//        String sourcepackage = object.getClass().getName();
+//        String classname = sourcepackage.substring(sourcepackage.lastIndexOf(".") + 1);
+//        InputStream in = ClassUtil.class.getResourceAsStream(getFilepath() + classname + ".properties");
+//        prop.load(in);
+//        Set<String> keylist = prop.stringPropertyNames();
 
-        Set<String> keylist = prop.stringPropertyNames();
         Class type = object.getClass();
         BeanInfo beanInfo = Introspector.getBeanInfo(type);
         PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();

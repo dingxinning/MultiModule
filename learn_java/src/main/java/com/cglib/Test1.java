@@ -1,6 +1,8 @@
 package com.cglib;
 
 import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Wuxiang on 2017/10/19.
@@ -8,7 +10,10 @@ import java.lang.reflect.Method;
  */
 public class Test1 {
     public static void main(String[] args) throws Exception {
-        DynamicBean bean = new ClassUtil().dynamicClass(new LeapRole());
+        Set<String> strings = new HashSet<>();
+        strings.add("name");
+        strings.add("address");
+        DynamicBean bean = new ClassUtil().dynamicClass(new LeapRole(), strings);
         bean.setValue("name","www");
         bean.setValue("address", "nanjing");
         System.out.println(bean.toString());
