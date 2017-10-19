@@ -87,5 +87,13 @@
             <version>3.21.0-GA</version>
         </dependency>
 
+        <!-- CGLIB是一个功能强大，高性能的代码生成包。实现动态代理 -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+
     </dependencies>
 </project>
