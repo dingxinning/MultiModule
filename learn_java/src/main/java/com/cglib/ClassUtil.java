@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
 
-
 /**
  * Created by Wuxiang on 2017/10/19.
  */
@@ -38,6 +37,7 @@ public class ClassUtil {
         prop.load(in);
 
         Set<String> keylist = prop.stringPropertyNames();
+        System.out.println(keylist);
 
         Class type = object.getClass();
         BeanInfo beanInfo = Introspector.getBeanInfo(type);
@@ -77,9 +77,9 @@ public class ClassUtil {
     public static void main(String[] args) throws Exception {
         DynamicBean bean = new ClassUtil().dynamicClass(new LeapRole());
         bean.setValue("name","www");
-        System.out.println(bean.getValue("name"));
+        System.out.println("name=" + bean.getValue("name"));
         bean.setValue("address", "nanjing");
-        System.out.println(bean.getValue("address"));
+        System.out.println("address=" + bean.getValue("address"));
         System.out.println(bean.toString());
     }
 }
