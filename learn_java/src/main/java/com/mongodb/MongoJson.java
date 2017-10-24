@@ -1,6 +1,8 @@
 package com.mongodb;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 import org.bson.Document;
@@ -26,12 +28,24 @@ public class MongoJson {
         MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
         MongoDatabase database = mongoClient.getDatabase("newdb");
 
-//        MongoCollection<DBObject> collection = database.getCollection("collectionName", DBObject.class);
+        MongoCollection<DBObject> collection = database.getCollection("collectionName", DBObject.class);
 //        DBObject bson = (DBObject) JSON.parse(json);
 //        collection.insertOne(bson);
+        System.out.println("集合内文档总数：" + collection.count());
+        FindIterable<DBObject> findIterable1 = collection.find();
+        MongoCursor<DBObject> mongoCursor1 = findIterable1.iterator();
+        while(mongoCursor1.hasNext()){
+            System.out.println(mongoCursor1.next());
+        }
 
-        MongoCollection<Document> collection = database.getCollection("collectionName");
-        Document document = Document.parse(json);
-        collection.insertOne(document);
+        MongoCollection<Document> collection2 = database.getCollection("collectionName");
+//        Document document = Document.parse(json);
+//        collection2.insertOne(document);
+        System.out.println("集合内文档总数：" + collection2.count());
+        FindIterable<Document> findIterable2 = collection2.find();
+        MongoCursor<Document> mongoCursor2 = findIterable2.iterator();
+        while(mongoCursor2.hasNext()){
+            System.out.println(mongoCursor2.next().toJson());
+        }
     }
 }
