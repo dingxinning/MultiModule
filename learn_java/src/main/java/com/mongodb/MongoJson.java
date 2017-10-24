@@ -28,6 +28,8 @@ public class MongoJson {
         MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
         MongoDatabase database = mongoClient.getDatabase("newdb");
 
+
+
         MongoCollection<DBObject> collection = database.getCollection("collectionName", DBObject.class);
 //        DBObject bson = (DBObject) JSON.parse(json);
 //        collection.insertOne(bson);
