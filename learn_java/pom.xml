@@ -26,12 +26,20 @@
             <version>4.3.7.RELEASE</version>
         </dependency>
 
-        <!-- mongo-java-driver MongoDB JDBC 驱动 -->
+        <!--MongoDB Driver 驱动，两个版本-->
+        <!--首选-->
         <dependency>
             <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.2.2</version>
+            <artifactId>mongodb-driver</artifactId>
+            <version>3.6.0-beta2</version>
         </dependency>
+
+        <!-- mongo-java-driver 遗留的版本，但也可以以用 -->
+        <!--<dependency>-->
+            <!--<groupId>org.mongodb</groupId>-->
+            <!--<artifactId>mongo-java-driver</artifactId>-->
+            <!--<version>3.6.0-beta2</version>-->
+        <!--</dependency>-->
 
         <!--汉语拼音-->
         <dependency>
