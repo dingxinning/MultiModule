@@ -13,7 +13,21 @@ public class ConciseRxJava {
         Observable
                 .just("Hello, world!")
                 .doOnCompleted(()-> System.out.println("OnCompleted!"))
-                .doOnError((throwable)-> System.out.println("onError:" + throwable))
+                .doOnError((e)-> System.out.println("onError:" + e))
                 .subscribe(System.out::println);
+
+        // 变换
+        Observable.just("Hello, world!")
+                .subscribe(s -> System.out.println(s + " -Dan"));
+
+        // map操作符
+        Observable.just("Hello, world!")
+                .map(s -> s + " -Dan")
+                .subscribe(s -> System.out.println(s));
+
+        Observable.just("Hello, world!")
+                .map(s -> s.hashCode())  // 获取string的哈希值
+                .map(i -> Integer.toString(i))//转为string
+                .subscribe(s -> System.out.println(s));
     }
 }
