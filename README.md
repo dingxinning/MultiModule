@@ -23,9 +23,10 @@ Learn Java、Spring...
 - 动态类 cglib、javassist
 - 序列化&反序列化
 - String 字符串各种操作
-- json转换
+- JSON 转换
 - 通信 httpClient、RestTemplate
 - 并发编程 concurrent
+- RX系列 RxJava...
 - 各种常用utils
 - ...
 4. 学习 Groovy
