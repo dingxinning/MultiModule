@@ -102,11 +102,18 @@
             <version>2.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.reactivex/rxjava -->
+        <!-- rxjava：异步数据处理库，使用扩展的观察者模式 -->
         <dependency>
             <groupId>io.reactivex</groupId>
             <artifactId>rxjava</artifactId>
             <version>1.0.14</version>
+        </dependency>
+
+        <!-- netty：Java NIO框架，提供异步事件驱动 -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.16.Final</version>
         </dependency>
 
 
