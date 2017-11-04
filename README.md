@@ -24,7 +24,7 @@ Learn Java、Spring...
 - 序列化&反序列化
 - String 字符串各种操作
 - JSON 转换
-- 通信 httpClient、RestTemplate
+- 通信 httpClient、RestTemplate、netty
 - 并发编程 concurrent
 - RX系列 RxJava...
 - 各种常用utils

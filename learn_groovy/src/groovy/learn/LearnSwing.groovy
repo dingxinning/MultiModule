@@ -4,6 +4,7 @@ import groovy.swing.SwingBuilder
 
 /**
  * Created by Wuxiang on 2017/2/6.
+ * Swing 程序
  */
 import java.awt.BorderLayout as BL
 
