@@ -16,6 +16,7 @@ public class DateConversion {
 
     public static final String chineseDateTimeFormat = "yyyy年MM月dd日 HH时mm分ss秒";
     public static final String dashDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+    public static final String dashDateTimeFormat2 = "yyyy-MM-dd HH:mm";
     public static final String slashDateTimeFormat = "yyyy/MM/dd HH:mm:ss";
 
     public static final String chineseDateFormat = "yyyy年MM月dd日";
@@ -38,6 +39,20 @@ public class DateConversion {
         ZoneId zone = ZoneId.systemDefault();
         LocalDateTime dateTime = LocalDateTime.ofInstant(instant, zone);
         return dateTime.toLocalDate();
+    }
+
+    // LocalDateTime 转 Date
+    public static Date localDateTime2Date(LocalDateTime localDateTime) {
+        ZoneId zone = ZoneId.systemDefault();
+        Instant instant = localDateTime.atZone(zone).toInstant();
+        return Date.from(instant);
+    }
+
+    // Date 转 LocalDateTime
+    public static LocalDateTime UDateToLocalDateTime(Date date) {
+        Instant instant = date.toInstant();
+        ZoneId zone = ZoneId.systemDefault();
+        return LocalDateTime.ofInstant(instant, zone);
     }
 
     //Date 转 字符串
