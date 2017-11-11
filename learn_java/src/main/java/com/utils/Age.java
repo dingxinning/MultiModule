@@ -101,11 +101,7 @@ public class Age {
                     age3 = monthNow - monthBirth - 1 + "";
                     unit = "月";
                     if (monthNow > 1) {
-                        Date date1 = new Date(yearNow + "/" + (monthNow - 1) + "/" + dayOfMonthBirth);
-                        Calendar cal3 = Calendar.getInstance();
-                        cal3.setTime(date1);
-                        long l = cal2.getTimeInMillis() - cal3.getTimeInMillis();
-                        day = new Long(l / (1000 * 60 * 60 * 24)).intValue();
+                        day = common(yearNow, monthNow, dayOfMonthBirth, cal2);
                     } else {
                         day = 31 - dayOfMonthBirth + dayOfMonthNow;
                     }
@@ -117,11 +113,7 @@ public class Age {
                 age3 = monthNow + 12 - monthBirth - 1 + "";
                 unit = "月";
                 if (monthNow > 1) {
-                    Date date1 = new Date(yearNow + "/" + (monthNow - 1) + "/" + dayOfMonthBirth);
-                    Calendar cal3 = Calendar.getInstance();
-                    cal3.setTime(date1);
-                    long l = cal2.getTimeInMillis() - cal3.getTimeInMillis();
-                    day = new Long(l / (1000 * 60 * 60 * 24)).intValue();
+                    day = common(yearNow, monthNow, dayOfMonthBirth, cal2);
                 } else {
                     day = 31 - dayOfMonthBirth + dayOfMonthNow;
                 }
@@ -129,11 +121,7 @@ public class Age {
                 age3 = monthNow + 12 - monthBirth + "";
                 unit = "月";
                 if (monthNow > 1) {
-                    Date date1 = new Date(yearNow + "/" + (monthNow - 1) + "/" + dayOfMonthBirth);
-                    Calendar cal3 = Calendar.getInstance();
-                    cal3.setTime(date1);
-                    long l = cal2.getTimeInMillis() - cal3.getTimeInMillis();
-                    day = new Long(l / (1000 * 60 * 60 * 24)).intValue();
+                    day = common(yearNow, monthNow, dayOfMonthBirth, cal2);
                 } else {
                     day = 31 - dayOfMonthBirth + dayOfMonthNow;
                 }
@@ -163,6 +151,14 @@ public class Age {
 
     public String getAgeCount() {
         return ageCount;
+    }
+
+    private int common(int yearNow, int monthNow, int dayOfMonthBirth, Calendar cal2) {
+        Date date1 = new Date(yearNow + "/" + (monthNow - 1) + "/" + dayOfMonthBirth);
+        Calendar cal3 = Calendar.getInstance();
+        cal3.setTime(date1);
+        long l = cal2.getTimeInMillis() - cal3.getTimeInMillis();
+        return new Long(l / (1000 * 60 * 60 * 24)).intValue();
     }
 
 }
