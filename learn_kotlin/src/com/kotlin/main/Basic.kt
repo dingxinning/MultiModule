@@ -102,15 +102,69 @@ fun main(args: Array<String>){
     println("${getStringLength("123444")} , ${getStringLength(12)}")
 
 
-    // 8. for循环
+    // 8. 循环
+    // 8.1 for循环
     val items = listOf("apple", "banana", "kiwi")
     for (item in items) {
         print("${item}  ")
     }
     println()
     for (index in items.indices) {
-        println("item at $index is ${items[index]}")
+        print("item at $index is ${items[index]}  ")
+    }
+    println()
+
+    // 8.2 while 循环
+    var index = 0
+    while (index < items.size) {
+        print("item at $index is ${items[index]}  ")
+        index++
+    }
+    println()
+
+    // 8.3 when  类似与switch
+    fun describe(obj: Any): String =
+        when (obj) {
+            1          -> "One"
+            "Hello"    -> "Greeting"
+            is Long    -> "Long"
+            !is String -> "Not a string"
+            else       -> "Unknown"
+        }
+    println("${describe(1)}, ${describe("Hello")}")
+
+
+    // 9. 区间
+    for (i in 1..4) print("${i} ") // 输出“1234”
+    for (i in 4..1) print("${i} ") // 什么都不输出
+    print("### ")
+
+    // 使用 step 指定步长
+    for (i in 1..4 step 2) print("${i} ") // 输出“13”
+    for (i in 4 downTo 1 step 2) print("${i} ") // 输出“42”
+    print("### ")
+
+    // 使用 until 函数排除结束元素
+    for (i in 1 until 5) {   // i in [1, 5) 排除了 5
+        print("${i} ")
+    }
+    println()
+
+
+    // 10 集合
+    // in  判断一个元素是否在集合中
+    val sets = setOf("apple", "banana", "kiwi")
+    when {
+        "orange" in sets -> println("juicy")
+        "apple" in sets -> println("apple is fine too")
     }
 
+    // stream 写法
+    val fruits = listOf("banana", "avocado", "apple", "kiwi")
+    fruits
+        .filter { it.startsWith("a") }
+        .sortedBy { it }
+        .map { it.toUpperCase() }
+        .forEach { println(it) }
 
 }
