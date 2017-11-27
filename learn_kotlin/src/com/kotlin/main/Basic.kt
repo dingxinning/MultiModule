@@ -4,35 +4,34 @@ package com.kotlin.main
  * Created by Wuxiang on 2017/11/27.
  */
 
-// 1. 函数定义
-// 写法1
-//fun sum(a: Int, b: Int): Int {   // Int 参数，返回值 Int
-//    return a + b
-//}
-
-// 写法2
-//fun sum(a: Int, b: Int) = a + b  // 表达式作为函数体，返回类型自动推断
-
-// 写法3
-public fun sum(a: Int, b: Int): Int = a + b   // public 方法则必须明确写出返回类型
-
-// 无返回值的函数（Unit类似于java 的void）
-fun printSum(a: Int, b: Int): Unit {
-    println("sum of $a and $b is ${a + b}")
-}
-
-// 函数的变长参数可以用 vararg 关键字进行标识
-fun vars(vararg v:Int){
-    for(vt in v){
-        print("${vt}  ")
-    }
-}
-
 fun main(args: Array<String>){
+    // 1. 函数定义
+    // 写法1
+    //fun sum(a: Int, b: Int): Int {   // Int 参数，返回值 Int
+    //    return a + b
+    //}
+
+    // 写法2
+    //fun sum(a: Int, b: Int) = a + b  // 表达式作为函数体，返回类型自动推断
+
+    // 写法3
+    fun sum(a: Int, b: Int): Int = a + b   // public 方法则必须明确写出返回类型
+
     println(sum(1, 1))
 
+    // 无返回值的函数（Unit类似于java 的void）
+    fun printSum(a: Int, b: Int): Unit {
+        println("sum of $a and $b is ${a + b}")
+    }
     printSum(2, 2)
 
+
+    // 函数的变长参数可以用 vararg 关键字进行标识
+    fun vars(vararg v:Int){
+        for(vt in v){
+            print("${vt}  ")
+        }
+    }
     vars(1,2,3,4,5)  // 输出12345
     println()
 
@@ -66,4 +65,52 @@ fun main(args: Array<String>){
     // 模板中的任意表达式：
     val s2 = "${s1.replace("is", "was")}, but now is $aa"
     println(s2)
+
+
+    // 5. 条件表达式
+    fun maxOf(a: Int, b: Int): Int {
+        if (a > b) {
+            return a
+        } else {
+            return b
+        }
+    }
+    println("2与6中较大的是 ${maxOf(2, 6)}")
+
+
+    // 6. NULL检查机制
+    /**
+     * 有两种处理方式，字段后加!!像Java一样抛出空异常，
+     * 另一种字段后加?可不做处理返回值为 null或配合?:做空判断处理
+     */
+    //类型后面加?表示可为空
+    var age: String? = null
+//    val ages = age!!.toInt()      //抛出空指针异常
+    val ages1 = age?.toInt()        //不做处理返回 null
+    val ages2 = age?.toInt() ?: -1  //age为空返回-1
+    println("$ages1  $ages2")
+
+
+    // 7. 类型检测
+    // 使用 is 运算符检测一个表达式是否某类型的一个实例(类似于Java中的instanceof关键字)。
+    fun getStringLength(obj: Any): Int? {
+        if (obj !is String)
+            return null
+        // 在这个分支中, `obj` 的类型会被自动转换为 `String`
+        return obj.length
+    }
+    println("${getStringLength("123444")} , ${getStringLength(12)}")
+
+
+    // 8. for循环
+    val items = listOf("apple", "banana", "kiwi")
+    for (item in items) {
+        print("${item}  ")
+    }
+    println()
+    for (index in items.indices) {
+        println("item at $index is ${items[index]}")
+    }
+
+
 }
