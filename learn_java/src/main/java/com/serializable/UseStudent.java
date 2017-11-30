@@ -1,5 +1,7 @@
 package com.serializable;
 
+import com.serializable.entity.Student;
+
 import java.io.*;
 
 /**
