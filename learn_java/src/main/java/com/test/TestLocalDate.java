@@ -6,6 +6,8 @@ import java.time.temporal.ChronoUnit;
 
 /**
  * Created by Wuxiang on 2017/8/11.
+ * 场景：体温单 周数计算
+ * 应用：计算两个日期之间相隔的周数
  */
 public class TestLocalDate {
     public static void main(String[] args) {
