@@ -75,7 +75,7 @@ public class BookController extends HandlerInterceptorAdapter {
     @ResponseBody
     public String testAll(HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        log.info("sdfsdfsdfsd");
+        log.info("get all info");
         return "test";
     }
 
