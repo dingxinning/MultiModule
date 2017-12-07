@@ -1,8 +1,8 @@
 package com.test;
 
+import com.utils.RegularUtil;
+
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -40,9 +40,9 @@ public class TestSort {
 
         // 1 排在后面  -1 排在前面  0 相等
         list1.sort((a, b) -> {
-            if (getNumber(a) > getNumber(b)) {
+            if (RegularUtil.getNumber(a) > RegularUtil.getNumber(b)) {
                 return 1;
-            } else if (getNumber(b) > getNumber(a)) {
+            } else if (RegularUtil.getNumber(b) > RegularUtil.getNumber(a)) {
                 return -1;
             }
             return 0;
@@ -51,15 +51,5 @@ public class TestSort {
         System.out.println("排序后:" + list1);
     }
 
-    /**
-     * 提取字符串的数字
-     * @param s 字符串
-     * @return int型的数字
-     */
-    private static int getNumber(String s) {
-        String regEx="[^0-9]";
-        Pattern p = Pattern.compile(regEx);
-        Matcher m = p.matcher(s);
-        return Integer.parseInt(m.replaceAll("").trim());
-    }
+
 }
