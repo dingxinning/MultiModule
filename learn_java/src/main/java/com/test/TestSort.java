@@ -1,6 +1,9 @@
 package com.test;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Created by Wuxiang on 2017/11/15.
@@ -30,25 +33,33 @@ public class TestSort {
         list.add("2楼5床");
         list.add("3楼1床");
         list.add(null);
-        System.out.println(list);
+        System.out.println("\n排序前:" + list);
 
+        List<String> list1 = list.stream().filter(Objects::nonNull).collect(Collectors.toList());
+        List<String> list2 = list.stream().filter(Objects::isNull).collect(Collectors.toList());
 
-        
+        // 1 排在后面  -1 排在前面  0 相等
+        list1.sort((a, b) -> {
+            if (getNumber(a) > getNumber(b)) {
+                return 1;
+            } else if (getNumber(b) > getNumber(a)) {
+                return -1;
+            }
+            return 0;
+        });
+        list1.addAll(list2);
+        System.out.println("排序后:" + list1);
+    }
 
-//        Collections.sort(list, new Comparator<Long>() {
-//            @Override
-//            public int compare(Long a, Long b) {
-//                if (a == null || b == null) {
-//                    return 2;
-//                }
-//                if(a>b){
-//                    return 1;
-//                }else if(a>b){
-//                    return -1;
-//                }
-//                return 0;
-//            }
-//        });
-        System.out.println(list);
+    /**
+     * 提取字符串的数字
+     * @param s 字符串
+     * @return int型的数字
+     */
+    private static int getNumber(String s) {
+        String regEx="[^0-9]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(s);
+        return Integer.parseInt(m.replaceAll("").trim());
     }
 }
