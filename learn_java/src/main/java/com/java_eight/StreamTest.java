@@ -1,5 +1,8 @@
 package com.java_eight;
 
+import com.java_eight.entity.Formula;
+import com.java_eight.entity.Person;
+import com.java_eight.entity.PersonFactory;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.Arrays;
@@ -12,57 +15,6 @@ import java.util.List;
  * Java 8 新特性
  * 第一个文件
  */
-
-interface Formula{
-    double calculate(int a);
-
-    default double sqrt(int a) {
-        return Math.sqrt(a);
-    }
-}
-
-//@FunctionalInterface
-//interface Converter<F, T> {
-//    T convert(F from);
-//}
-
-//建造工厂
-class Person {
-    String firstName;
-    String lastName;
-
-    Person() {}
-
-    Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        System.out.println("+_+ "+this.firstName+"   "+this.lastName);
-    }
-}
-
-interface PersonFactory<P extends Person> {
-    P create(String firstName, String lastName);
-}
-
-class Lambda4 {
-    static int outerStaticNum;
-    int outerNum;
-
-
-    void testScopes() {
-        Converter<Integer, String> stringConverter1 = (from) -> {
-            outerNum = 23;
-            return String.valueOf(from);
-        };
-
-        Converter<Integer, String> stringConverter2 = (from) -> {
-            outerStaticNum = 72;
-            return String.valueOf(from);
-        };
-        System.out.println(stringConverter1+" ,  "+stringConverter2);
-    }
-}
-
 public class StreamTest {
     public static void main(String[] args) {
 
