@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Created by Administrator on 2016/11/22.
+ * 简单的查询数据
  */
 @Controller
 @RequestMapping("/employee")

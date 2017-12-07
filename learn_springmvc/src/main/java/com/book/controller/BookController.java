@@ -2,6 +2,8 @@ package com.book.controller;
 
 import com.book.model.Book;
 import com.book.service.BookService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,22 +19,24 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/book")
 public class BookController extends HandlerInterceptorAdapter {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     //preHandle在业务处理器处理请求之前被调用。
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("preHandle");
+        log.info("preHandle");
         return super.preHandle(request, response, handler);
     }
     //postHandle在业务处理器处理请求执行完成后,生成视图之前执行。
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("postHandle");
+        log.info("postHandle");
         super.postHandle(request, response, handler, modelAndView);
     }
     //afterCompletion在DispatcherServlet完全处理完请求后被调用,可用于清理资源等 。
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("afterHandle");
+        log.info("afterHandle");
         super.afterCompletion(request, response, handler, ex);
     }
 
@@ -46,8 +50,8 @@ public class BookController extends HandlerInterceptorAdapter {
 
     @RequestMapping(params = "method=Add")
     public String add(Book book){
-        System.out.println("bookname:"+book.getName());
-        System.out.println("author:"+book.getAuthor());
+        log.info("bookname:"+book.getName());
+        log.info("author:"+book.getAuthor());
         bookService.add(book);
         return "book/success";
     }
@@ -60,9 +64,9 @@ public class BookController extends HandlerInterceptorAdapter {
 
     @RequestMapping(value = "add",method = RequestMethod.POST)
     public String add111(Book book){
-        System.out.println("id:"+book.getId());
-        System.out.println("bookname:"+book.getName());
-        System.out.println("author:"+book.getAuthor());
+        log.info("id:"+book.getId());
+        log.info("bookname:"+book.getName());
+        log.info("author:"+book.getAuthor());
         bookService.add(book);
         return "book/success";
     }
@@ -71,7 +75,7 @@ public class BookController extends HandlerInterceptorAdapter {
     @ResponseBody
     public String testAll(HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        System.out.println("sdfsdfsdfsd");
+        log.info("sdfsdfsdfsd");
         return "test";
     }
 
