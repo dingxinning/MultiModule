@@ -20,4 +20,14 @@ public class RegularUtil {
         Matcher m = p.matcher(s);
         return Integer.parseInt(m.replaceAll("").trim());
     }
+
+    /**
+     * 判断String中是否全是数字
+     * @param str
+     * @return
+     */
+    public static boolean isNumeric(String str){
+        Pattern pattern = Pattern.compile("[0-9]*");
+        return pattern.matcher(str).matches();
+    }
 }
