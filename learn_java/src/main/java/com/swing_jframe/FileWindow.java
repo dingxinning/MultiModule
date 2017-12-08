@@ -1,4 +1,4 @@
-package com.java_compiler;
+package com.swing_jframe;
 
 import javax.swing.*;
 import java.awt.*;

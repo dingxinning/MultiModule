@@ -1,4 +1,4 @@
-package com.java_compiler;
+package com.swing_jframe;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 /**
  * Created by Wuxiang on 2017/1/17.
  */
-public class Main {
+public class TestFileWindow {
     public static void main(String[] args) {
         // TODO Auto-generated method stub
         FileWindow win=new FileWindow();

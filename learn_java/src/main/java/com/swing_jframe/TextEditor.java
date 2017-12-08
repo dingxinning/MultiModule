@@ -1,4 +1,4 @@
-package com.text_editor;
+package com.swing_jframe;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -12,7 +12,7 @@ import java.io.*;
 /**
  * Created by Wuxiang on 2017/1/26.
  */
-public class MainForm extends JFrame implements ActionListener, DocumentListener {
+public class TextEditor extends JFrame implements ActionListener, DocumentListener {
 
     private static final long serialVersionUID = 1L;
     // 界面元素变量
@@ -32,7 +32,7 @@ public class MainForm extends JFrame implements ActionListener, DocumentListener
     // 系统粘贴板
     Clipboard clip;
 
-    public MainForm() {
+    public TextEditor() {
         // 界面初始化
         InitGUI();
         InitPara();
