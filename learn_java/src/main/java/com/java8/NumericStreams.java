@@ -51,7 +51,7 @@ public class NumericStreams {
         Stream<int[]> pythagoreanTriples =
                 IntStream.rangeClosed(1, 100).boxed()
                         .flatMap(a -> IntStream.rangeClosed(a, 100)
-                                .filter(b -> isPerfectSquare(a * a + b * b)).boxed()
+                                .filter(b -> isPerfectSquare(a, b)).boxed()
                                 .map(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
                         );
 
@@ -60,7 +60,7 @@ public class NumericStreams {
 
     // 判断 输入的数字 是否能被开方
     // 即 a方 + b方 能被开根的话，意味着 c 为整数
-    private static boolean isPerfectSquare(int n) {
-        return Math.sqrt(n) % 1 == 0;
+    private static boolean isPerfectSquare(int a, int b) {
+        return Math.sqrt(a * a + b * b) % 1 == 0;
     }
 }
