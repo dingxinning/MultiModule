@@ -1,10 +1,10 @@
-package com.java8;
+package com.java8.stream;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static com.java8.Dish.menu;
+import static com.java8.stream.Dish.menu;
 
 /**
  * Created by Wuxiang on 2017/12/8.
