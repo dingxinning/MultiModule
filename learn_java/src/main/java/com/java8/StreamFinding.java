@@ -22,8 +22,12 @@ public class StreamFinding {
 
         // Optional 代表一个值存在或不存在 （findAny / findFirst 可能返回null）
         // Optional.ifPresent 如果存在才会输出
-        Optional<Dish> dish = findVegetarianDish();
-        dish.ifPresent(d -> System.out.println(d.getName()));
+
+        // findAny 返回当前流中的任意元素
+        menu.stream()
+                .filter(Dish::isVegetarian)
+                .findAny()
+                .ifPresent(d -> System.out.println(d.getName()));
 
         // 测试返回null的情况
         findCalor100Dish();
@@ -54,10 +58,6 @@ public class StreamFinding {
         return menu.stream().noneMatch(d -> d.getCalories() >= 1000);
     }
 
-    // findAny 返回当前流中的任意元素
-    private static Optional<Dish> findVegetarianDish() {
-        return menu.stream().filter(Dish::isVegetarian).findAny();
-    }
 
     private static void findCalor100Dish() {
         menu.stream()
