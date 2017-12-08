@@ -1,8 +1,5 @@
 package com.java_eight;
 
-import com.java_eight.entity.Formula;
-import com.java_eight.entity.Person;
-import com.java_eight.entity.PersonFactory;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.Arrays;

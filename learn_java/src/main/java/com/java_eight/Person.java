@@ -1,9 +1,8 @@
-package com.java_eight.entity;
+package com.java_eight;
 
 /**
  * Created by Wuxiang on 2017/12/7.
  */
-
 
 public class Person {
     public String firstName;

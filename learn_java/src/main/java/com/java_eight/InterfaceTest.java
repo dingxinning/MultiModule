@@ -1,7 +1,5 @@
 package com.java_eight;
 
-import com.java_eight.entity.Person;
-
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
