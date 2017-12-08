@@ -84,3 +84,47 @@ public class StreamTest {
 
     }
 }
+
+interface Formula {
+    double calculate(int a);
+
+    default double sqrt(int a) {
+        return Math.sqrt(a);
+    }
+}
+
+class Person {
+    public String firstName;
+    public String lastName;
+
+    public Person() {}
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        System.out.println("+_+ "+this.firstName+"   "+this.lastName);
+    }
+}
+
+interface PersonFactory<P extends Person> {
+    P create(String firstName, String lastName);
+}
+
+class Lambda4 {
+    static int outerStaticNum;
+    int outerNum;
+
+
+    void testScopes() {
+        Converter<Integer, String> stringConverter1 = (from) -> {
+            outerNum = 23;
+            return String.valueOf(from);
+        };
+
+        Converter<Integer, String> stringConverter2 = (from) -> {
+            outerStaticNum = 72;
+            return String.valueOf(from);
+        };
+        System.out.println(stringConverter1+" ,  "+stringConverter2);
+    }
+}
