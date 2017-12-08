@@ -9,10 +9,13 @@ import static com.java8.Dish.menu;
 
 /**
  * Created by Wuxiang on 2017/12/8.
+ * Java8 In Action 第五章 使用Stream
+ * 5.1 筛选和切片
  */
 public class StreamFiltering {
     public static void main(String[] args) {
-        // Filtering with predicate
+
+        // filter 接受一个谓词(返回布尔值的函数)作为参数，返回符合的流
         List<Dish> vegetarianMenu =
                 menu.stream()
                         .filter(Dish::isVegetarian)
@@ -23,14 +26,14 @@ public class StreamFiltering {
         });
         System.out.println();
 
-        // Filtering unique elements
+        // distinct  返回的元素各不相同
         List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
         numbers.stream()
                 .filter(i -> i % 2 == 0)
                 .distinct()
                 .forEach(System.out::println);
 
-        // Truncating a stream
+        // limit(n) 返回一个不超过指定长度的流
         List<Dish> dishesLimit3 =
                 menu.stream()
                         .filter(d -> d.getCalories() > 300)
@@ -42,7 +45,7 @@ public class StreamFiltering {
         });
         System.out.println();
 
-        // Skipping elements
+        // skip(n)  返回一个扔掉前n个元素的流
         List<Dish> dishesSkip2 =
                 menu.stream()
                         .filter(d -> d.getCalories() > 300)
