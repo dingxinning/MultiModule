@@ -9,8 +9,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
     public static void main(String[] args) throws Exception {
-        ApplicationContext context = new ClassPathXmlApplicationContext("config/MyAOPConfig.xml");
-//        ApplicationContext context = new ClassPathXmlApplicationContext("config/MyAOPAutoConfig.xml");
+//        ApplicationContext context = new ClassPathXmlApplicationContext("config/MyAOPConfig.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("config/MyAOPAutoConfig.xml");
         Performance performance = (Performance) context.getBean("perform");
         int start = (int) (Math.random() * 10) + 1;
         performance.perform(start);

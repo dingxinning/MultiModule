@@ -44,7 +44,7 @@ public class AudienceAspect {
 
 //    环绕通知，将所编写的逻辑被通知的目标方法完全包装起来
     @Around("myPerform()")
-    public void watchPerformance(ProceedingJoinPoint joinPoint) {
+    public Object watchPerformance(ProceedingJoinPoint joinPoint) {
         try {
             System.out.println("2 Silencing cell phones.");
             System.out.println("2 Taking seats.");
@@ -53,5 +53,6 @@ public class AudienceAspect {
         } catch (Throwable throwable) {
             System.out.println("2 Demanding a refund.");
         }
+        return null;
     }
 }
