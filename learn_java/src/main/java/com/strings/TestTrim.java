@@ -1,4 +1,4 @@
-package com.test;
+package com.strings;
 
 import java.util.Objects;
 
