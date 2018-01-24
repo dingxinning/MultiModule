@@ -1,8 +1,11 @@
 package com.test;
 
+import com.utils.DateConversion;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 /**
  * Created by Wuxiang on 2017/8/11.
@@ -46,5 +49,10 @@ public class TestLocalDate {
         // 测试周数  返回 1-7
         LocalDate localDate = LocalDate.of(2017,10,15);
         System.out.println(localDate.getDayOfWeek().getValue());
+
+
+        // date 转为 localdate 之后，已经去除了 小时&分钟 等时间的概念
+        LocalDate testLocal = DateConversion.date2LocalDate(new Date());
+        System.out.println(testLocal);
     }
 }
