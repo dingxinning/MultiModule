@@ -1,4 +1,4 @@
-package com.java_eight;
+package com.java8.java8GetStart;
 
 import java.util.HashMap;
 import java.util.Map;
