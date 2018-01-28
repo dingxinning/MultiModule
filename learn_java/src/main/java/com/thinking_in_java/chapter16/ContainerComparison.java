@@ -8,6 +8,9 @@ import java.util.List;
  * Created by Wuxiang on 2018/1/28
  *
  * 16.1  对比 数组和容器
+ *
+ * 数组固定长度，强调效率
+ * 容器可变长度，强调灵活
  */
 public class ContainerComparison {
     public static void main(String[] args) {
@@ -41,7 +44,7 @@ public class ContainerComparison {
 
         Integer a = 100;
         Integer b = 100;
-        System.out.println(a==b);
+        System.out.println(a == b);
         System.out.println(a.equals(b));
 
         Integer c = 200;

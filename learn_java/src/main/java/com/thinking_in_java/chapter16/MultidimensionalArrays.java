@@ -15,6 +15,11 @@ public class MultidimensionalArrays {
                 {4, 5, 6},
                 {7, 8, 9}
         };
-        System.out.println(Arrays.deepToString(a));
+        System.out.println(Arrays.deepToString(a));  // 遍历输出多维数组
+
+        // new来分配数组
+        int[][][] b = new int[2][3][1];
+        System.out.println(Arrays.deepToString(b));
+
     }
 }
