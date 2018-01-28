@@ -1,7 +1,6 @@
 package com.thinking_in_java.chapter16;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,6 +40,9 @@ public class ArraysCommon {
         Arrays.sort(d);
         System.out.println(Arrays.toString(d));
 
-
+        // 自定义排序
+        // 当前对象 < 参数  返回负数
+        // 相等  返回 0
+        // 当前对象 > 参数  返回正数
     }
 }
