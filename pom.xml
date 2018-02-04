@@ -18,6 +18,8 @@
         <module>learn_spring</module>
         <module>SpringMybatisJavaConfig</module>
         <module>ShiroQuickStart</module>
+        <module>head_first_design_patterns</module>
+        <module>thinking_in_java</module>
     </modules>
 
     <build>

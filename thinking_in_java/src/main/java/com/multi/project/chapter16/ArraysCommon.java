@@ -1,4 +1,4 @@
-package com.thinking_in_java.chapter16;
+package com.multi.project.chapter16;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.thinking_in_java.chapter16;
+package com.multi.project.chapter16;
 
 /**
  * Created by Wuxiang on 2018/1/28
