@@ -39,11 +39,7 @@ public class UseStudent {
             ois.close();
             fis.close();
         }
-        catch(ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
+        catch(ClassNotFoundException | IOException e)
         {
             e.printStackTrace();
         }
