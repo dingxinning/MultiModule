@@ -6,6 +6,6 @@ package com.thread_learn.create_thread;
 public class MyRunnable implements Runnable {
     @Override
     public void run() {
-        System.out.println("MyRunnable1 running");
+        System.out.println("MyThread3 running");
     }
 }
