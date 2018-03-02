@@ -1,4 +1,4 @@
-package com.thread;
+package com.thread_learn;
 
 /**
  * Created by Wuxiang on 2017/4/25.
