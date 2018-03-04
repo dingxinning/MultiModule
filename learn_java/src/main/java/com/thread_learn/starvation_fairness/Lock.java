@@ -8,13 +8,15 @@ package com.thread_learn.starvation_fairness;
  * 锁的实现
  */
 public class Lock {
-    private boolean isLocked = false;
+    private boolean isLocked = false;  // 是否有锁
     private Thread lockingThread = null;
 
     public synchronized void lock() throws InterruptedException {
+        // 如果已经加锁，陷入循环，线程处于等待状态
         while (isLocked) {
             wait();
         }
+        // 某一个线程被唤醒，加锁，成为当前线程，
         isLocked = true;
         lockingThread = Thread.currentThread();
     }
@@ -23,8 +25,9 @@ public class Lock {
         if (this.lockingThread != Thread.currentThread()) {
             throw new IllegalMonitorStateException("调用线程尚未锁定此锁");
         }
+        // 解锁，当前线程清空
         isLocked = false;
         lockingThread = null;
-        notify();
+        notify();  // 唤醒某个等待的线程
     }
 }

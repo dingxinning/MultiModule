@@ -33,6 +33,7 @@ public class FairLock {
                     return;
                 }
             }
+            // queueObject.doWait()调用放置在synchronized(this)块之外，以避免被循环嵌套器锁死
             try {
                 queueObject.doWait();
             } catch (InterruptedException e) {
@@ -50,6 +51,8 @@ public class FairLock {
         }
         isLocked = false;
         lockingThread = null;
+
+        // 从队列头部获取QueueObject，并对其调用doNotify()，以唤醒在该对象上等待的线程。
         if (waitingThreads.size() > 0) {
             waitingThreads.get(0).doNotify();
         }
