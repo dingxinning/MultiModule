@@ -24,8 +24,7 @@ public class FairLock {
 
         while (isLockedForThisThread) {
             synchronized (this) {
-                isLockedForThisThread =
-                        isLocked || waitingThreads.get(0) != queueObject;
+                isLockedForThisThread = isLocked || waitingThreads.get(0) != queueObject;
                 if (!isLockedForThisThread) {
                     isLocked = true;
                     waitingThreads.remove(queueObject);
