@@ -14,7 +14,7 @@ public class ReadWriteLock {
 
     // 读取
     public synchronized void lockRead() throws InterruptedException {
-        // 没有线程正在做写操作，且没有线程在请求写操作时，可以数去
+        // 当没有线程正在做写操作，且没有线程在请求写操作时，可以进行读取
         while (writers > 0 || writeRequests > 0) {
             wait();
         }
@@ -31,7 +31,7 @@ public class ReadWriteLock {
     public synchronized void lockWrite() throws InterruptedException {
         writeRequests++;
 
-        // 没有线程正在做读写操作时，才可以写入。
+        // 当没有线程正在做读写操作时，才可以写入。
         while (readers > 0 || writers > 0) {
             wait();
         }

@@ -30,8 +30,7 @@ public class ReadWriteReentrantLock {
     public synchronized void unlockRead() {
         Thread callingThread = Thread.currentThread();
         if (!isReader(callingThread)) {
-            throw new IllegalMonitorStateException("Calling Thread does not" +
-                    " hold a read lock on this ReadWriteLock");
+            throw new IllegalMonitorStateException("调用线程不会在此ReadWriteLock上保存读锁定");
         }
         int accessCount = getReadAccessCount(callingThread);
         if (accessCount == 1) {
@@ -42,11 +41,15 @@ public class ReadWriteReentrantLock {
         notifyAll();
     }
 
+    // 读锁重入建立规则：要保证某个线程中的读锁可重入，要么满足获取读锁的条件（没有写或写请求），要么已经持有读锁。
+    // 读锁 基本要求：没有写或写请求 （2 和 4）
+    // 保证 读锁可重入：一个线程已经持有读锁，允许重入 （3）
+    // 保证 写锁降级到读锁 ：对于一个拥有写锁的线程，再获得读锁，是不会有什么危险的 （1）
     private boolean canGrantReadAccess(Thread callingThread) {
-        if (isWriter(callingThread)) return true;
-        if (hasWriter()) return false;
-        if (isReader(callingThread)) return true;
-        if (hasWriteRequests()) return false;
+        if (isWriter(callingThread)) return true;  // 1
+        if (hasWriter()) return false;  // 2
+        if (isReader(callingThread)) return true;  // 3
+        if (hasWriteRequests()) return false;  // 4
         return true;
     }
 
@@ -63,8 +66,7 @@ public class ReadWriteReentrantLock {
 
     public synchronized void unlockWrite() {
         if (!isWriter(Thread.currentThread())) {
-            throw new IllegalMonitorStateException("Calling Thread does not" +
-                    " hold the write lock on this ReadWriteLock");
+            throw new IllegalMonitorStateException("调用线程不会在此ReadWriteLock上保存读锁定");
         }
         writeAccesses--;
         if (writeAccesses == 0) {
@@ -73,11 +75,14 @@ public class ReadWriteReentrantLock {
         notifyAll();
     }
 
+    // 写锁 基本要求：没有线程持有读锁（2）, 没有线程持有写锁（3）
+    // 保证 写锁可重入：仅当一个线程已经持有写锁，才允许写锁重入 （4）
+    // 保证 读锁升级到写锁： 要求这个拥有读锁的线程是唯一一个拥有读锁的线程 （1）
     private boolean canGrantWriteAccess(Thread callingThread) {
-        if (isOnlyReader(callingThread)) return true;
-        if (hasReaders()) return false;
-        if (writingThread == null) return true;
-        if (!isWriter(callingThread)) return false;
+        if (isOnlyReader(callingThread)) return true; // 1
+        if (hasReaders()) return false;  // 2
+        if (writingThread == null) return true;  // 3
+        if (!isWriter(callingThread)) return false; // 4
         return true;
     }
 
@@ -98,8 +103,7 @@ public class ReadWriteReentrantLock {
     }
 
     private boolean isOnlyReader(Thread callingThread) {
-        return readingThreads.size() == 1 &&
-                readingThreads.get(callingThread) != null;
+        return readingThreads.size() == 1 && readingThreads.get(callingThread) != null;
     }
 
     private boolean hasWriter() {

@@ -1,5 +1,5 @@
 # MultiModule
-Learn Java、Spring...
+Learn Java、Spring、Other...
 
 # 多模块项目
 
@@ -12,39 +12,50 @@ Learn Java、Spring...
     - 页面置换算法：FIFO、LRU、OPT
     - 作业调度算法：FCFS、SJF、HRN
     - TSP问题求解算法
-2. 设计模式
-    - 23种常用的设计模式demo
-3. 学习 Java
+    - ...
+2. 学习 Java
     - 集合
     - Java8 新特性
-    - mongodb
-    - quartz 定时任务
+    - MongoDB 增删改查
+    - Quartz 定时任务
     - 反射机制
-    - 动态类 cglib、javassist
+    - 动态代理 Cglib、Javassist
     - 序列化&反序列化
     - String 字符串各种操作
     - JSON 转换
-    - 通信 httpClient、RestTemplate、netty
+    - 通信 HttpClient、RestTemplate、netty
     - 并发编程 concurrent
+    - Java并发性和多线程 系列  http://ifeve.com/java-concurrency-thread-directory/
     - RX系列 RxJava...
     - 各种常用utils
     - ...
-4. 学习 Spring
-    - 参考 Spring In Action
-5. 学习 Spring MVC
+3. 学习 Spring
+    - IOC、AOP
+    - Cache
+    - JDBC、Hibernate
+    - RESTful API
+    - ...
+4. 学习 Spring MVC
     - book (Logger)
     - captcha (基本的验证码)
     - Employee (impl & 查询数据)
     - imageVerify (简单的图片验证码)
     - learn (MVC各种基本注解尝试)
     - ...
-7. SpringMVC & Mybatis JavaConfig
-8. Shiro 权限管理
+5. SpringMVC & Mybatis JavaConfig
+6. Shiro 权限管理
     - QuickStart
-9. 学习 Groovy
-    - [入门教程](http://blog.csdn.net/kmyhy/article/details/4200563)
-10. 学习 Kotlin
+7. 设计模式
+    - 23种常用的设计模式demo
+8. 学习 Groovy
+    - 入门教程：http://blog.csdn.net/kmyhy/article/details/4200563
+9. 学习 Kotlin
     - 基本语法
+    - http://kotlinlang.org/docs/reference/basic-syntax.html
+10. 书籍代码
+    - Spring In Action
+    - Head First 设计模式
+    - Thinking in Java
 
 
 ## 目的
