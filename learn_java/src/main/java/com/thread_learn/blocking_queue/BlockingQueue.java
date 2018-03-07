@@ -11,7 +11,7 @@ import java.util.List;
  * 当队列是空的时，从队列中获取元素的操作将会被阻塞，或者当队列是满时，往队列里添加元素的操作会被阻塞。
  *
  * 阻塞队列的实现类似于带上限的Semaphore的实现。
- * 只有队列的大小等于上限（limit）或者下限（0）时，才调用notifyAll方法
+ * 只有队列的大小等于上限（limit）或者下限（0）时，才调用notifyAll方法（调用notifyAll，可能会引起饥饿，没有保证公平性）
  */
 public class BlockingQueue {
     private List<Object> queue = new LinkedList<>();
