@@ -8,11 +8,12 @@ package com.thread_learn.semaphores;
  * 四、有上限的Semaphore
  *
  * 在可计数的基础上，可以设置限信号量的上限
+ *
+ * 当信号量的数量上限是1时，Semaphore可以被当做锁来使用。
  */
 public class BoundedSemaphore {
     private int signals = 0;
     private int bound;
-    private int signalCount = 0;
 
     BoundedSemaphore(int upperBound) {
         this.bound = upperBound;
@@ -27,10 +28,11 @@ public class BoundedSemaphore {
     }
 
     public synchronized void release() throws InterruptedException {
-        while (this.signalCount == this.bound) {
+
+        // this.bound 是当前信号量的上限，this.signals是当前的信号量的数目，没毛病
+        while (this.signals == this.bound) {
             wait();
         }
-        this.signalCount++;
         this.signals++;
         this.notify();
     }

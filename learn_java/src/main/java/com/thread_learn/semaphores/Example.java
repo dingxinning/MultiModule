@@ -13,7 +13,7 @@ public class Example {
     public static void main(String[] args) {
 //        Semaphore semaphore = new Semaphore();
 //        CountingSemaphore semaphore = new CountingSemaphore();
-        BoundedSemaphore semaphore = new BoundedSemaphore(5);
+        BoundedSemaphore semaphore = new BoundedSemaphore(1);
 
 
         SendingThread sender = new SendingThread(semaphore);
