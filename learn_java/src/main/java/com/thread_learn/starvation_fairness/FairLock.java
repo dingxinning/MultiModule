@@ -9,6 +9,12 @@ import java.util.List;
  * 16. 饥饿和公平
  *
  * 公平锁的实现
+ *
+ * 每一个调用lock()的线程都会进入一个队列，当解锁后，只有队列里的第一个线程被允许锁住Farlock实例，所有其它的线程都将处于等待状态，直到他们处于队列头部。
+ *
+ * 调用unlock()的线程将从队列头部获取QueueObject，并对其调用doNotify()，以唤醒在该对象上等待的线程。
+ *
+ * 以此实现公平性
  */
 public class FairLock {
     private boolean isLocked = false;

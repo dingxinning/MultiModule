@@ -6,6 +6,8 @@ package com.thread_learn.starvation_fairness;
  * 16. 饥饿与公平
  *
  * 锁的实现
+ *
+ * notify()  会从 所有等待线程中随机选择一个进行唤醒，具有随机性
  */
 public class Lock {
     private boolean isLocked = false;  // 是否有锁， 当为true时，代表对象已锁，当为false时，代表对象没锁
