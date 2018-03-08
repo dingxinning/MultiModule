@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 
 /**
  * Created by Wuxiang on 2018/3/8
+ *
+ * 第一步
+ * Java连接到 PostgreSQL 数据库
  */
 public class PostgreSQLJDBC {
     public static void main(String[] args) {
@@ -17,6 +20,6 @@ public class PostgreSQLJDBC {
             System.err.println(e.getClass().getName()+": "+e.getMessage());
             System.exit(0);
         }
-        System.out.println("Opened database successfully");
+        System.out.println("成功连接 PostgreSQL数据库 testdb！！！");
     }
 }
