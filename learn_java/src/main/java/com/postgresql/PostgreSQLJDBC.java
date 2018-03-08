@@ -15,6 +15,9 @@ public class PostgreSQLJDBC {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testdb", "postgres", "960629");
+
+            System.out.println("默认，postgresql是自动提交的");
+            System.out.println(c.getAutoCommit());
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
