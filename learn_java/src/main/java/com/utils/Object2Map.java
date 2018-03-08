@@ -31,8 +31,12 @@ public class Object2Map {
         Object object = (Object) leapRole;
         System.out.println(object);
 
+        // Object ---> Map
         Map<String, Object> map = objectToMap3(object);
         System.out.println(map);
+
+        // Map ---> Object
+        System.out.println(mapToObject3(map, leapRole.getClass()));
 
         String json = JSON.serialize(map);
         System.out.println(json);

@@ -1,4 +1,4 @@
-package com.utils;
+package com.test;
 
 import java.util.Random;
 

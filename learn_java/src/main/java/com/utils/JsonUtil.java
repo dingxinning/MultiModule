@@ -43,4 +43,19 @@ public class JsonUtil {
         return null;
     }
 
+    public static <T> T parseObjectFromFile(String filePath, Class<T> cls){
+        String txt = FileUtil.txtToString(filePath);
+        return parseObject(txt, cls);
+    }
+
+    public static  <T> List<T> parseArrayFromFile(String filePath, Class<T> cls){
+        String txt = FileUtil.txtToString(filePath);
+        return parseArray(txt, cls);
+    }
+
+    public static <T> T parseObjectFromJarFile(Class receiverCls, String filePath, Class<T> cls){
+        String txt = FileUtil.jarTxtToString(receiverCls, filePath);
+        return parseObject(txt, cls);
+    }
+
 }
