@@ -1,7 +1,7 @@
-package com.restTemplate.controller;
+package com.resttemplate.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.restTemplate.entity.RestUser;
+import com.resttemplate.entity.RestUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

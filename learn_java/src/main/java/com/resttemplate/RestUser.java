@@ -1,4 +1,4 @@
-package com.restTemplate.entity;
+package com.resttemplate;
 
 /**
  * Created by Wuxiang on 2017/8/31.

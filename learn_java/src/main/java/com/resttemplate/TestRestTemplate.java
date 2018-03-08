@@ -1,4 +1,4 @@
-package com.restTemplate;
+package com.resttemplate;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.http.HttpEntity;
