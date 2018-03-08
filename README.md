@@ -14,7 +14,7 @@ Learn Java、Spring、Other...
     - TSP问题求解算法
     - ...
 2. 学习 Java
-    - 集合
+    - 集合 Collection 操作
     - Java8 新特性
     - String 字符串各种操作
     - JSON 转换

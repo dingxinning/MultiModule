@@ -6,6 +6,10 @@ package com.jvm;
  *
  * == 和 equals 的关系
  * ==常用于比较原生类型，而equals()方法用于检查对象的相等性。
+ *
+ * 总结：
+ * "==" 除了比较基本数据之外都是比较的内存地址
+ * "equals" 除了没有没有重写equals方法的类之外都是比较的内容
  */
 public class TestSyntaxSugar {
     public static void main(String[] args) {
@@ -22,5 +26,10 @@ public class TestSyntaxSugar {
         System.out.println(c.equals(a + b)); // true
         System.out.println(g == (a + b));    // true
         System.out.println(g.equals(a + b)); // false
+
+
+        int aa = 1;
+        int bb = 1;
+        System.out.println(aa == bb);
     }
 }
