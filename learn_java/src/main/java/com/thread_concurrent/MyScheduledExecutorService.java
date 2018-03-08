@@ -9,7 +9,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * Created by Wuxiang on 2017/9/28.
- * 8.ScheduledExecutorService  可安排在给定的延迟后运行或定期执行的命令。
+ * 8. ScheduledExecutorService  可安排在给定的延迟后运行或定期执行的命令。
  *
  * scheduleAtFixedRate 和 scheduleWithFixedDelay 方法创建并执行某些在取消前一直定期运行的任务。
  */

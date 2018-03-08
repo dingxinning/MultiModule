@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by Wuxiang on 2017/9/28.
- * 4. BlockingQueue 有序队列
+ * 4. BlockingQueue 有序的阻塞队列
  *
  * BlockingQueue 不接受null元素
  * BlockingQueue 可以是限定容量的。
