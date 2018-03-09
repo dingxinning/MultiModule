@@ -44,10 +44,10 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         menuBar = new JMenuBar();
         menuBar.setBackground(Color.LIGHT_GRAY);
         final JMenu[] menu = {
-            new JMenu("File"),// "File"菜单
-            new JMenu("Edit"),// "Edit"菜单
-            new JMenu("Font"), //"Font"菜单
-            new JMenu("Help") // "Help"菜单
+                new JMenu("File"),// "File"菜单
+                new JMenu("Edit"),// "Edit"菜单
+                new JMenu("Font"), //"Font"菜单
+                new JMenu("Help") // "Help"菜单
         };
 
         final JMenuItem[][] menuItem = {
@@ -58,8 +58,7 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
                 {},
                 {new JMenuItem("Help"), new JMenuItem("About")}};
         for (int i = 0; i < menu.length; i++) {
-            for (int j = 0; j < menuItem[i].length; j++)
-            {
+            for (int j = 0; j < menuItem[i].length; j++) {
                 menuItem[i][j].setBackground(Color.LIGHT_GRAY);
                 menu[i].add(menuItem[i][j]);
                 menuItem[i][j].addActionListener(this);
@@ -70,15 +69,12 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         // 工具栏初始化
 
         JToolBar toolBar = new JToolBar();
-        String[] toolButtonText =
-                {"New","Open","Exit"};
+        String[] toolButtonText = {"New", "Open", "Exit"};
         JButton[] toolButton = new JButton[toolButtonText.length];
-        for(int i=0;i<toolButtonText.length;i++)
-        {
+        for (int i = 0; i < toolButtonText.length; i++) {
             toolButton[i] = new JButton(toolButtonText[i]);
         }
-        for(int i=0;i<toolButton.length;i++)
-        {
+        for (int i = 0; i < toolButton.length; i++) {
             toolButton[i].setActionCommand(toolButtonText[i]);
             toolButton[i].addActionListener(this);
             toolBar.add(toolButton[i]);
@@ -115,6 +111,7 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         this.setSize(640, 480);
         this.setVisible(true);
     }
+
     // 参数初始化
     public void InitPara() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -128,40 +125,41 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         // TODO Auto-generated method stub
         switch (e.getActionCommand()) {
             // File菜单的事件响应
-            case "New" :
+            case "New":
                 newFile();
                 break;
-            case "Open" :
+            case "Open":
                 openFile();
                 break;
-            case "Save" :
+            case "Save":
                 saveFile();
                 break;
-            case "Exit" :
+            case "Exit":
                 exit();
                 break;
             // Edit菜单事件响应
-            case "Cut" :
+            case "Cut":
                 cutText();
                 break;
-            case "Copy" :
+            case "Copy":
                 copyText();
                 break;
-            case "Paste" :
+            case "Paste":
                 pasteText();
                 break;
 
             // Help菜单事件响应
-            case "Help" :
+            case "Help":
                 help();
                 break;
-            case "About" :
+            case "About":
                 about();
                 break;
-            default :
+            default:
                 break;
         }
     }
+
     //菜单功能函数
     public void newFile() {
         if (TextChangeNoSave) {
@@ -178,6 +176,7 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         filePath = null;
         fileName = null;
     }
+
     public void openFile() {
         if (TextChangeNoSave) {
             int n = JOptionPane.showConfirmDialog(this, "文件已更改，是否保存?", "提示！",
@@ -196,6 +195,7 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         DocIsNew = false;
 
     }
+
     public void saveFile() {
         if (DocIsNew) {
             FileDialog saveFileDlg = new FileDialog(this, "保存文件",
@@ -206,6 +206,7 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         }
         WriteFile();
     }
+
     public void exit() {
         if (TextChangeNoSave) {
             int n = JOptionPane.showConfirmDialog(this, "文件已更改，是否保存?", "提示！",
@@ -216,12 +217,15 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
         }
         System.exit(0);
     }
+
     public void cutText() {
         textEdit.cut();
     }
+
     public void copyText() {
         textEdit.copy();
     }
+
     public void pasteText() {
         textEdit.paste();
 //        Transferable contents = clip.getContents(this);
@@ -238,17 +242,20 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
 //            }
 //        }
     }
+
     public void help() {
         //File dir = new File("..");
         //filePath = dir.getAbsolutePath();
         fileName = "readme.txt";
         ReadFile();
     }
+
     public void about() {
         String info = "作者 ：nudt_tony \n" + "日期 ：2013 06 28\n"
                 + "邮箱 ：basic8@163.com";
         JOptionPane.showMessageDialog(this, info);
     }
+
     // /底层文件读写函数
     public void WriteFile() {
         if (fileName != null) {
@@ -273,10 +280,9 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
                 FileReader fr = new FileReader(file1);
                 BufferedReader in = new BufferedReader(fr);
                 StringBuilder text = new StringBuilder();
-                String str="";
-                while ((str = in.readLine()) != null)
-                {
-                    text.append(str+ "\r\n");
+                String str = "";
+                while ((str = in.readLine()) != null) {
+                    text.append(str + "\r\n");
                 }
                 textEdit.setText(text.toString());
                 in.close();
@@ -288,6 +294,7 @@ public class TextEditor extends JFrame implements ActionListener, DocumentListen
             }
         }
     }
+
     @Override
     public void insertUpdate(DocumentEvent e) {
 
