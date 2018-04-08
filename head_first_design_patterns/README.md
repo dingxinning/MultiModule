@@ -7,3 +7,4 @@
     - 4 策略模式
     - 5 代理模式：静态代理、动态代理（JDK，cglib），eg. Spring AOP
     - 6 工厂模式&抽象工厂模式 eg. JDBC、Spring BeanFactory
+    - 7 责任链模式
