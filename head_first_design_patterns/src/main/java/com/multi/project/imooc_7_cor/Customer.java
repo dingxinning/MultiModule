@@ -21,6 +21,10 @@ import java.util.Random;
  * 2. 可扩展
  * 增加一个 Lead 进入链中，只需要增加 Lead实体类，继承PriceHandler，实现具体业务代码
  * 并修改对应的工厂方法即可
+ *
+ * 缺点：
+ * 1. 性能差
+ *
  */
 public class Customer {
 
