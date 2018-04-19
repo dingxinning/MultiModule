@@ -19,4 +19,8 @@ public class MyJob implements Job {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
         System.out.println(sdf.format(new Date()));
     }
+
+    public void test() {
+        System.out.println(123);
+    }
 }
