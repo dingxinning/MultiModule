@@ -33,5 +33,7 @@ public class JsonSerializable {
         // 反序列化
         PostArgs postArgs1 = gson.fromJson(json, PostArgs.class);
         System.out.println(postArgs1);
+
+        // 注意：不管实体类是多字段，还是少字段，都能反序列化成功
     }
 }
