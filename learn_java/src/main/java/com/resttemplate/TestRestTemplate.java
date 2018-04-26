@@ -35,5 +35,7 @@ public class TestRestTemplate {
         HttpEntity<String> formEntity = new HttpEntity<>(parm.toString(), headers);
         String result = restTemplate.postForObject("http://localhost:8080/restTemplate/user", formEntity, String.class);
         System.out.println(result);
+
+        // 后续：若返回的是对象，将 返回的string 反序列 成对象
     }
 }
