@@ -57,6 +57,7 @@ Learn Java、Spring、Other...
     - Spring In Action
     - Head First 设计模式
     - Thinking in Java
+11. Dropwizard: RESTful Web 框架
 
 
 ## 目的

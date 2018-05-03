@@ -48,11 +48,14 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.9.0</version>
         </dependency>
-        <dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.2.3</version>
-        </dependency>
+
+        <!-- Java对象 与 json xml 转换 -->
+        <!--<dependency>-->
+            <!--<groupId>net.sf.json-lib</groupId>-->
+            <!--<artifactId>json-lib</artifactId>-->
+            <!--<version>2.4</version>-->
+        <!--</dependency>-->
+
 
         <!--简单的json转换-->
         <dependency>

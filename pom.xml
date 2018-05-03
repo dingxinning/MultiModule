@@ -20,6 +20,7 @@
         <module>ShiroQuickStart</module>
         <module>head_first_design_patterns</module>
         <module>thinking_in_java</module>
+        <module>drop_wizard</module>
     </modules>
 
     <build>
