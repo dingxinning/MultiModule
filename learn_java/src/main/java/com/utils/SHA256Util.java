@@ -78,5 +78,12 @@ public class SHA256Util {
 
         System.out.println(Objects.equals(getSHA256Str("123"), getSHA256Str("123")));
         System.out.println(Objects.equals(getSHA256Str("123"), getSHA256Str("456")));
+
+        System.out.println(getSign("005", "hetou"));
+    }
+
+    public static String getSign(String serialNumber, String yinDuoKey) {
+        String signStr = String.format("serialNumber=%s&key=%s", serialNumber, yinDuoKey);
+        return getSHA256Str(signStr);
     }
 }
