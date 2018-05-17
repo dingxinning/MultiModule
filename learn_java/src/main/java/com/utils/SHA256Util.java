@@ -79,7 +79,7 @@ public class SHA256Util {
         System.out.println(Objects.equals(getSHA256Str("123"), getSHA256Str("123")));
         System.out.println(Objects.equals(getSHA256Str("123"), getSHA256Str("456")));
 
-        System.out.println(getSign("005", "hetou"));
+        System.out.println(getSign("005", "omniprimeinc_hetou"));
     }
 
     public static String getSign(String serialNumber, String yinDuoKey) {
