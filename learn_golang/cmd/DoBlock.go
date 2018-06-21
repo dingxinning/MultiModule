@@ -2,7 +2,7 @@ package main
 
 import "../core"
 
-// 创建一个简易的区块链
+// 创建一个简易的区块链，直接调用
 func main() {
 
 	// 生成创世区块
