@@ -14,5 +14,13 @@ public class TestByte {
         System.out.println(Integer.valueOf(STATUS_NOT_SYNC));
 
         System.out.println(UUID.randomUUID().toString());
+
+        if (1 == 1) {
+            System.out.println("1");
+        }
+
+        {
+            System.out.println("2");
+        }
     }
 }
