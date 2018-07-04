@@ -53,6 +53,9 @@ Learn Java、Spring、Other...
 9. 学习 Kotlin
     - 基本语法
     - http://kotlinlang.org/docs/reference/basic-syntax.html
+10. 学习 go
+    - 学习基本语法
+    - 用GO语言构建自己的区块链：https://www.imooc.com/learn/1011
 10. 书籍代码
     - Spring In Action
     - Head First 设计模式
