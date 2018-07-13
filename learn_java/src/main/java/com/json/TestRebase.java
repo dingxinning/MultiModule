@@ -8,4 +8,8 @@ public class TestRebase {
     public void test1(){
         System.out.println("1");
     }
+
+    public String test2By2() {
+        return "test2";
+    }
 }
