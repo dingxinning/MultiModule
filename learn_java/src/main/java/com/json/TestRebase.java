@@ -7,6 +7,7 @@ public class TestRebase {
 
     public void test1(){
         System.out.println("1");
+        System.out.println(2222);
     }
 
     public String test2By2() {
