@@ -1,11 +1,11 @@
 package com.spring.spittr.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.logging.Logger;
 
 /**
  * Created by Wuxiang on 2017/4/2.
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping({"/","/homePage"})
 public class HomeController {
-    private static Logger logger = Logger.getLogger(String.valueOf(HomeController.class));
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
