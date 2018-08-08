@@ -1,5 +1,7 @@
 package spittr.web.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ import java.util.List;
  */
 @Controller
 public class UserController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    
     @Autowired
     UserService userService;
 
@@ -21,7 +26,7 @@ public class UserController {
     public String findAll() {
         List<UserInfo> userInfos = userService.findAll();
         for (int i = 0; i < userInfos.size(); i++) {
-            System.out.println(userInfos.get(i).toString());
+            logger.info(userInfos.get(i).toString());
         }
         return "find all users";
     }
@@ -30,7 +35,7 @@ public class UserController {
     @ResponseBody
     public String findById(@PathVariable Integer id) {
         UserInfo userInfo = userService.findById(id);
-        System.out.println(userInfo.toString());
+        logger.info(userInfo.toString());
         return "find user by id=" + id;
     }
 
@@ -46,7 +51,7 @@ public class UserController {
     @ResponseBody
     public String update(@ModelAttribute UserInfo userInfo) throws Exception {
         userService.updateUser(userInfo);
-        System.out.println(userInfo.toString());
+        logger.info(userInfo.toString());
         return "update user success!";
     }
 
