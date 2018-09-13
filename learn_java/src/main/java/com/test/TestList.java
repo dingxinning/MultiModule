@@ -3,6 +3,7 @@ package com.test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Wuxiang on 2017/5/18.
@@ -39,5 +40,24 @@ public class TestList {
         }else{
             newStrings.add(strings);
         }
+
+
+        String id = "f697cbfb2ade465b88b2ba1c2b695d89,1,临时,013879,黄彩嫆,2018-08-20 14:02,013879,黄彩嫆,2018-08-20 14:02,;";
+        String[] ids = id.split(";");
+        for (int i = 0; i < ids.length; i++) {
+            String content[] = ids[i].split(",");
+            System.out.println(content.length);
+        }
+
+
+        List<String> inpno = new ArrayList<>();
+        inpno.add("123");
+        inpno.add("123");
+        inpno.add("456");
+        inpno.add("789");
+        System.out.println(inpno.toString());
+        List<String> newInpno = inpno.stream().distinct().map(i -> "'" + i + "'").collect(Collectors.toList());
+        System.out.println(String.join(",",newInpno));
+
     }
 }
