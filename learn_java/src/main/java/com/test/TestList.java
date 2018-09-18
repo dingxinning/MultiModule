@@ -59,5 +59,12 @@ public class TestList {
         List<String> newInpno = inpno.stream().distinct().map(i -> "'" + i + "'").collect(Collectors.toList());
         System.out.println(String.join(",",newInpno));
 
+
+
+        String test = "C823956E65E00001A23F42801BC81BCA,C82395AD30D000012DB614151FE51C2E";
+        String[] rcpid = test.split(",");
+        String rcpids = String.join(",", Arrays.stream(rcpid).map(i -> "'" + i + "'").collect(Collectors.toList()));
+        System.out.println(rcpids);
+
     }
 }
