@@ -31,7 +31,7 @@ public class RecursiveTaskDemo extends RecursiveTask<Integer> {
             }
             return sum;
         } else {
-//            System.err.println("=====任务分解======");
+            System.err.println("=====任务分解======");
             // 将大任务分解成两个小任务
             int middle = (start + end) / 2;
             RecursiveTaskDemo left = new RecursiveTaskDemo(arr, start, middle);

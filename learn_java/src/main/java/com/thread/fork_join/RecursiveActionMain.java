@@ -15,7 +15,8 @@ public class RecursiveActionMain {
         forkJoinPool.submit(new RecursiveActionDemo(0, 1000));
 
         // 阻塞当前线程直到 ForkJoinPool 中所有的任务都执行结束
-        forkJoinPool.awaitTermination(2, TimeUnit.SECONDS);
+        forkJoinPool.awaitTermination(1, TimeUnit.SECONDS);
+        System.out.println("结束");
 
         // 关闭线程池
         forkJoinPool.shutdown();

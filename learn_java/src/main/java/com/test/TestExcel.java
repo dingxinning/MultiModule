@@ -28,7 +28,7 @@ public class TestExcel {
         HSSFWorkbook workbook = new HSSFWorkbook();//创建Excel文件(Workbook)
 
         //2.创建单元格
-        HSSFSheet sheet = workbook.createSheet("Test");// 创建工作表(Sheet)
+        HSSFSheet sheet = workbook.createSheet("TestFibonacci");// 创建工作表(Sheet)
         HSSFRow row = sheet.createRow(0);// 创建行,从0开始
         HSSFCell cell = row.createCell(0);// 创建行的单元格,也是从0开始
         cell.setCellValue("李志伟");// 设置单元格内容
