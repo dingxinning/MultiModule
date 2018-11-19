@@ -6,7 +6,7 @@ import java.io.*;
  * Created by Wuxiang on 2018/3/8
  */
 public class FileUtil {
-    public static String txtToString(File file){
+    public static String txtToString(File file) {
         StringBuilder result = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
@@ -26,7 +26,7 @@ public class FileUtil {
         return txtToString(file);
     }
 
-    public static String jarTxtToString(Class receiverCls, String filePath){
+    public static String jarTxtToString(Class receiverCls, String filePath) {
         InputStream ips = receiverCls.getResourceAsStream(filePath);
         StringBuilder result = new StringBuilder();
         try {

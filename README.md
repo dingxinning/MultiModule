@@ -20,14 +20,15 @@ Learn Java、Spring、Other...
     - JSON 转换
     - 序列化&反序列化
     - 通信 HttpClient、RestTemplate、netty
-    - 并发编程 concurrent
-    - Java并发性和多线程 系列  http://ifeve.com/java-concurrency-thread-directory/
     - MongoDB 增删改查
     - PostgreSQL 增删改查
     - Quartz 定时任务
     - 反射机制
     - 动态代理 Cglib、Javassist
-    - Fork/Join 框架（RecursiveAction & RecursiveTask）
+    - 多线程
+        - 并发编程 concurrent
+        - Java并发性和多线程 系列
+        - Fork/Join 框架
     - RX系列 RxJava...
     - 各种常用utils
     - ...
