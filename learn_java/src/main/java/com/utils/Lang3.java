@@ -32,8 +32,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  * Created by Wuxiang on 2017/11/2.
  */
 public class Lang3 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Lang3 langDemo = new Lang3();
 
         langDemo.charSetDemo();
@@ -51,24 +50,20 @@ public class Lang3 {
 
     }
 
-    public void charSetDemo()
-    {
+    public void charSetDemo() {
         System.out.println("**CharSetDemo**");
         CharSet charSet = CharSet.getInstance("aeiou");
         String demoStr = "The quick brown fox jumps over the lazy dog.";
         int count = 0;
-        for (int i = 0, len = demoStr.length(); i < len; i++)
-        {
-            if (charSet.contains(demoStr.charAt(i)))
-            {
+        for (int i = 0, len = demoStr.length(); i < len; i++) {
+            if (charSet.contains(demoStr.charAt(i))) {
                 count++;
             }
         }
         System.out.println("count: " + count);
     }
 
-    public void charSetUtilsDemo()
-    {
+    public void charSetUtilsDemo() {
         System.out.println("**CharSetUtilsDemo**");
         System.out.println("计算字符串中包含某字符数.");
         System.out.println(CharSetUtils.count(
@@ -86,8 +81,7 @@ public class Lang3 {
         System.out.println(CharSetUtils.squeeze("aaa  bbbbbb     c dd", " abd"));
     }
 
-    public void objectUtilsDemo()
-    {
+    public void objectUtilsDemo() {
         System.out.println("**ObjectUtilsDemo**");
         System.out.println("Object为null时，默认打印某字符.");
         Object obj = null;
@@ -111,8 +105,7 @@ public class Lang3 {
         System.out.println(date);
     }
 
-    public void serializationUtilsDemo()
-    {
+    public void serializationUtilsDemo() {
         System.out.println("*SerializationUtils**");
         Date date = new Date();
         byte[] bytes = SerializationUtils.serialize(date);
@@ -126,8 +119,7 @@ public class Lang3 {
 
         FileOutputStream fos = null;
         FileInputStream fis = null;
-        try
-        {
+        try {
             fos = new FileOutputStream(new File("d:/test.txt"));
             fis = new FileInputStream(new File("d:/test.txt"));
             SerializationUtils.serialize(date, fos);
@@ -135,28 +127,20 @@ public class Lang3 {
 
             System.out.println(date.equals(reDate2));
 
-        }
-        catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
+        } finally {
+            try {
                 fos.close();
                 fis.close();
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
     }
 
-    public void randomStringUtilsDemo()
-    {
+    public void randomStringUtilsDemo() {
         System.out.println("**RandomStringUtilsDemo**");
         System.out.println("生成指定长度的随机字符串,好像没什么用.(不是好像没用，就是没用！！！)");
         System.out.println(RandomStringUtils.random(500));
@@ -170,8 +154,7 @@ public class Lang3 {
 
     }
 
-    public void stringUtilsDemo()
-    {
+    public void stringUtilsDemo() {
         System.out.println("**StringUtilsDemo**");
         System.out.println("将字符串重复n次，将文字按某宽度居中，将字符串数组用某字符串连接.");
         String[] header = new String[3];
@@ -220,8 +203,7 @@ public class Lang3 {
         System.out.println(StringUtils.isNumeric("123"));
     }
 
-    public void systemUtilsDemo()
-    {
+    public void systemUtilsDemo() {
         System.out.println(genHeader("SystemUtilsDemo"));
         System.out.println("获得系统文件分隔符.");
         System.out.println(SystemUtils.FILE_SEPARATOR);
@@ -239,8 +221,7 @@ public class Lang3 {
         System.out.println(SystemUtils.JAVA_VENDOR);
     }
 
-    public void classUtilsDemo()
-    {
+    public void classUtilsDemo() {
         System.out.println(genHeader("ClassUtilsDemo"));
         System.out.println("获取类实现的所有接口.");
         System.out.println(ClassUtils.getAllInterfaces(Date.class));
@@ -259,8 +240,7 @@ public class Lang3 {
         System.out.println(ClassUtils.isAssignable(Object.class, Date.class));
     }
 
-    public void stringEscapeUtilsDemo()
-    {
+    public void stringEscapeUtilsDemo() {
         System.out.println(genHeader("StringEcsapeUtils"));
         System.out.println("转换特殊字符.");
         System.out.println("html:" + StringEscapeUtils.escapeHtml4("/n\n"));
@@ -268,20 +248,17 @@ public class Lang3 {
                 + StringEscapeUtils.unescapeHtml4("<p>"));
     }
 
-    private final class BuildDemo
-    {
+    private final class BuildDemo {
         String name;
 
         int age;
 
-        public BuildDemo(String name, int age)
-        {
+        public BuildDemo(String name, int age) {
             this.name = name;
             this.age = age;
         }
 
-        public String toString()
-        {
+        public String toString() {
             ToStringBuilder tsb = new ToStringBuilder(this,
                     ToStringStyle.MULTI_LINE_STYLE);
             tsb.append("Name", name);
@@ -289,18 +266,15 @@ public class Lang3 {
             return tsb.toString();
         }
 
-        public int hashCode()
-        {
+        public int hashCode() {
             HashCodeBuilder hcb = new HashCodeBuilder();
             hcb.append(name);
             hcb.append(age);
             return hcb.hashCode();
         }
 
-        public boolean equals(Object obj)
-        {
-            if (!(obj instanceof BuildDemo))
-            {
+        public boolean equals(Object obj) {
+            if (!(obj instanceof BuildDemo)) {
                 return false;
             }
             BuildDemo bd = (BuildDemo) obj;
@@ -311,8 +285,7 @@ public class Lang3 {
         }
     }
 
-    public void builderDemo()
-    {
+    public void builderDemo() {
         System.out.println(genHeader("BuilderDemo"));
         BuildDemo obj1 = new BuildDemo("a", 1);
         BuildDemo obj2 = new BuildDemo("b", 2);
@@ -333,14 +306,13 @@ public class Lang3 {
         System.out.println(obj1.equals(obj3));
     }
 
-    public void numberUtils()
-    {
+    public void numberUtils() {
         System.out.println(genHeader("NumberUtils"));
         System.out.println("字符串转为数字(不知道有什么用).");
         System.out.println(NumberUtils.toInt("ba", 33));
 
         System.out.println("从数组中选出最大值.");
-        System.out.println(NumberUtils.max(new int[] { 1, 2, 3, 4 }));
+        System.out.println(NumberUtils.max(new int[]{1, 2, 3, 4}));
 
         System.out.println("判断字符串是否全是整数.");
         System.out.println(NumberUtils.isDigits("123.1"));
@@ -349,8 +321,7 @@ public class Lang3 {
         System.out.println(NumberUtils.isNumber("0123.1"));
     }
 
-    public void dateFormatUtilsDemo()
-    {
+    public void dateFormatUtilsDemo() {
         System.out.println(genHeader("DateFormatUtilsDemo"));
         System.out.println("格式化日期输出.");
         System.out.println(DateFormatUtils.format(System.currentTimeMillis(),
@@ -361,8 +332,7 @@ public class Lang3 {
         sw.start();
 
         for (Iterator iterator = DateUtils.iterator(new Date(),
-                DateUtils.RANGE_WEEK_CENTER); iterator.hasNext();)
-        {
+                DateUtils.RANGE_WEEK_CENTER); iterator.hasNext(); ) {
             Calendar cal = (Calendar) iterator.next();
             System.out.println(DateFormatUtils.format(cal.getTime(),
                     "yy-MM-dd HH:mm"));
@@ -373,8 +343,7 @@ public class Lang3 {
 
     }
 
-    private String genHeader(String head)
-    {
+    private String genHeader(String head) {
         String[] header = new String[3];
         header[0] = StringUtils.repeat("*", 50);
         header[1] = StringUtils.center("  " + head + "  ", 50, "^O^");
