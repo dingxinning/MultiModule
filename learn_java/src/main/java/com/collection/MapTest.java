@@ -9,6 +9,15 @@ import java.util.Map.Entry;
  */
 public class MapTest {
     public static void main(String [] args){
+
+        /*
+         * HashMap 初始化参数
+         * initialCapacity：HashMap中桶的数量
+         * loadFactor：装载因子，扩容用的
+         */
+        Map map1 = new HashMap();
+        Map map2 = new HashMap(16, 0.75f);
+
         Map<String,String> map= new HashMap<>();
         map.put("id", "1");
         map.put("name", "wx");
