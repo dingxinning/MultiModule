@@ -17,5 +17,8 @@ public class TestUUID {
         System.out.println(l);
         l = BigDecimal.valueOf(1.2);
         System.out.println(l);
+
+        System.out.println(Double.valueOf("1"));
+
     }
 }
