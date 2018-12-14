@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.17</version>
+            <version>[1.2.31,)</version>
         </dependency>
         <!--基于Jackson JSON处理器的高性能数据绑定包-->
         <dependency>
@@ -36,17 +36,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.0</version>
+            <version>[2.9.5,)</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.9.0</version>
+            <version>[2.9.5,)</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.9.0</version>
+            <version>[2.9.5,)</version>
         </dependency>
 
         <!-- Java对象 与 json xml 转换 -->
