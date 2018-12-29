@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/employee")
-public class EmployeeController
-{
+public class EmployeeController {
     @Autowired
     EmployeeManager manager;
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    public String getAllEmployees(Model model)
-    {
+    public String getAllEmployees(Model model) {
         model.addAttribute("employees", manager.getAllEmployees());
         return "employee/employeeListDisplay";
     }

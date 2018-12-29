@@ -16,8 +16,7 @@ public class EmployeeManagerImpl implements EmployeeManager {
     @Autowired
     EmployeeDAO dao;
 
-    public List<EmployeeVO> getAllEmployees()
-    {
+    public List<EmployeeVO> getAllEmployees() {
         return dao.getAllEmployees();
     }
 }

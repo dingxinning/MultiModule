@@ -12,9 +12,8 @@ import java.util.List;
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
 
-    public List<EmployeeVO> getAllEmployees()
-    {
-        List<EmployeeVO> employees = new ArrayList<EmployeeVO>();
+    public List<EmployeeVO> getAllEmployees() {
+        List<EmployeeVO> employees = new ArrayList<>();
 
         EmployeeVO vo1 = new EmployeeVO();
         vo1.setId(1);
