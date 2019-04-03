@@ -22,8 +22,8 @@
 
 # 行为型模式
 ## 父类与子类：
-13. Strategy 策略模式
-14. Template Method  模版方法模式
+13. Strategy 策略模式  ！！！
+14. Template Method  模版方法模式  ！！！
 
 ## 两个类之间  
 15. Observer  观察者模式
