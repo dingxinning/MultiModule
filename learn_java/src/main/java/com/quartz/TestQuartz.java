@@ -15,10 +15,10 @@ import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * Created by Wuxiang on 2017/8/26.
- *
+ * <p>
  * 第二步：创建任务调度，并执行
  */
-public class TestQuertz {
+public class TestQuartz {
     public void go() throws Exception {
         // 首先，必需要取得一个Scheduler的引用
         SchedulerFactory sf = new StdSchedulerFactory();
@@ -36,21 +36,22 @@ public class TestQuertz {
         job = newJob(MyJob.class).withIdentity("job2", "group1").build();
         trigger = newTrigger().withIdentity("trigger2", "group1").withSchedule(cronSchedule("15 0/1 * * * ?")).build();
         ft = sched.scheduleJob(job, trigger);
-        System.out.println(job.getKey() + " 已被安排执行于: " + sdf.format(ft) + "，并且以如下重复规则重复执行: "+ trigger.getCronExpression());
+        System.out.println(job.getKey() + " 已被安排执行于: " + sdf.format(ft) + "，并且以如下重复规则重复执行: " + trigger.getCronExpression());
 
         // 开始执行，start()方法被调用后，计时器就开始工作，计时调度中允许放入N个Job
         sched.start();
         try {
             //主线程等待一分钟
             Thread.sleep(60L * 2000L);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         //关闭定时调度，定时器不再工作
         sched.shutdown(true);
     }
 
     public static void main(String[] args) throws Exception {
 
-        TestQuertz test = new TestQuertz();
+        TestQuartz test = new TestQuartz();
         test.go();
     }
 }
