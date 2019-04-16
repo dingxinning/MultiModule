@@ -66,5 +66,14 @@ public class TestList {
         String rcpids = String.join(",", Arrays.stream(rcpid).map(i -> "'" + i + "'").collect(Collectors.toList()));
         System.out.println(rcpids);
 
+
+        // List 转 String[]
+        List<String> itemTypes = Arrays.asList("2");
+        List<String> itemCategorys = Arrays.asList("1", "2", "3", "4");
+        String[] arr1 = itemTypes.toArray(new String[0]);
+        String[] arr2 = itemCategorys.toArray(new String[0]);
+        System.out.println(arr1.length);
+        System.out.println(arr2.length);
+
     }
 }
